@@ -1,0 +1,8 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 0.5732416698440967,
+    "n_train_cases": 257,
+    "rag_context_coverage": 1.0
+  }
+]

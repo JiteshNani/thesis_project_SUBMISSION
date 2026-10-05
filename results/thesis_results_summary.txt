@@ -1,0 +1,29 @@
+FINAL THESIS RESULTS - GENERATED FROM CURRENT CODE
+============================================================
+Code fingerprint SHA-256: fbeeea88ecdab0869ebb06af2a1d993a87b8ff31692b5b052dc0cd6c043fd84e
+Random seed: 42
+Device: cuda | GPU: NVIDIA GeForce RTX 4050 Laptop GPU | VRAM GiB: 5.997
+
+Complete paired cases: 368
+Split counts: {'train': 257, 'test': 56, 'val': 55}
+Extent thresholds (training-only tertiles, original voxels): [66715.33333333333, 122864.0]
+
+Slot CNN micro accuracy: 0.9107
+Majority baseline micro accuracy: 0.7536
+CNN - majority: 0.1571
+CNN macro balanced accuracy (informative slots): 0.688149326307221
+
+Segmentation mean held-out test metrics (HD95 in mm):
+  whole_tumor: Dice=0.8410779605687992, IoU=0.7348475389104715, Precision=0.8536251003903254, Recall=0.8470976774747117, HD95_mm=12.036053121089935
+  tumor_core: Dice=0.588814629289241, IoU=0.4481817621212345, Precision=0.6328002302208786, Recall=0.663735327818092, HD95_mm=16.03439376609666
+  enhancing_tumor: Dice=0.27301069466715705, IoU=0.16851438650247388, Precision=0.28753033353886515, Recall=0.4481083153965178, HD95_mm=15.475708016982445
+  edema: Dice=0.583171449697912, IoU=0.4267042891201886, Precision=0.6072596881261519, Recall=0.6125273071334237, HD95_mm=12.019997996943337
+  necrotic_non_enhancing: Dice=0.35937998820279804, IoU=0.24163322468791934, Precision=0.4810852774536055, Recall=0.3839528533380817, HD95_mm=17.855230873281304
+
+Report-generation metrics:
+  template_gt_oracle: raw_structure=1.0000, final_pipeline_structure=1.0000, raw_conditioning_consistency=1.0000, final_conditioning_consistency=1.0000, gt_consistency=1.0000, raw_unsupported_flag_rate=0.0000, final_unsupported_flag_rate=0.0000
+  cnn_template: raw_structure=1.0000, final_pipeline_structure=1.0000, raw_conditioning_consistency=1.0000, final_conditioning_consistency=1.0000, gt_consistency=0.9107, raw_unsupported_flag_rate=0.0000, final_unsupported_flag_rate=0.0000
+  vlm_base: raw_structure=1.0000, final_pipeline_structure=1.0000, raw_conditioning_consistency=1.0000, final_conditioning_consistency=1.0000, gt_consistency=0.9107, raw_unsupported_flag_rate=0.0000, final_unsupported_flag_rate=0.0000
+  vlm_rag: raw_structure=1.0000, final_pipeline_structure=1.0000, raw_conditioning_consistency=1.0000, final_conditioning_consistency=1.0000, gt_consistency=0.9107, raw_unsupported_flag_rate=0.0000, final_unsupported_flag_rate=0.0000
+
+Do not describe the unsupported-content diagnostic as a clinical hallucination rate or as clinical validation/safety evidence.

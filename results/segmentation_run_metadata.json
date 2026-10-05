@@ -1,0 +1,154 @@
+{
+  "code_fingerprint_sha256": "fbeeea88ecdab0869ebb06af2a1d993a87b8ff31692b5b052dc0cd6c043fd84e",
+  "torch_version": "2.13.0+cu126",
+  "cuda_available": true,
+  "cuda_version": "12.6",
+  "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "config": {
+    "project": {
+      "name": "Reliable and Grounded Vision-Language Analysis for Structured Brain Tumor MRI Report Generation",
+      "seed": 42
+    },
+    "data": {
+      "raw_dir": "data/raw",
+      "manifest_path": "data/manifest/manifest.csv",
+      "skipped_path": "data/manifest/skipped_incomplete_cases.csv",
+      "metadata_path": "data/manifest/slot_metadata.json",
+      "split_seed": 42,
+      "train_ratio": 0.7,
+      "val_ratio": 0.15,
+      "test_ratio": 0.15,
+      "target_shape": [
+        128,
+        128,
+        128
+      ],
+      "intensity_clip": [
+        -3.0,
+        3.0
+      ],
+      "extent_quantiles": [
+        0.333333,
+        0.666667
+      ],
+      "report_suffix": "_flair_text.txt"
+    },
+    "slot_model": {
+      "backbone_channels": 16,
+      "dropout": 0.2,
+      "epochs": 12,
+      "batch_size": 2,
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "num_workers": 0,
+      "use_amp": true,
+      "use_class_weights": true
+    },
+    "segmentation": {
+      "epochs": 40,
+      "batch_size": 1,
+      "learning_rate": 0.0002,
+      "min_learning_rate": 2e-05,
+      "weight_decay": 1e-05,
+      "num_workers": 0,
+      "use_amp": true,
+      "channels": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "strides": [
+        2,
+        2,
+        2
+      ],
+      "num_res_units": 2,
+      "augment_probability": 0.65,
+      "flip_probability": 0.25,
+      "max_rotation_degrees": 10.0,
+      "intensity_scale": 0.1,
+      "max_grad_norm": 1.0,
+      "scheduler_factor": 0.5,
+      "scheduler_patience": 4,
+      "min_epochs": 20,
+      "early_stopping_patience": 10,
+      "early_stopping_min_delta": 0.0001
+    },
+    "vlm": {
+      "llm_model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+      "num_visual_tokens": 8,
+      "vision_channels": [
+        16,
+        32,
+        64
+      ],
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "lora_dropout": 0.05,
+      "lora_target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "gradient_checkpointing": true,
+      "max_prompt_length": 512,
+      "max_target_length": 220,
+      "max_new_tokens": 160,
+      "temperature": 0.0,
+      "do_sample": false,
+      "top_p": 0.92,
+      "repetition_penalty": 1.0,
+      "no_repeat_ngram_size": 0,
+      "grounded_target_reference_chars": 220,
+      "epochs": 8,
+      "batch_size": 1,
+      "lora_learning_rate": 0.0001,
+      "projector_learning_rate": 5e-05,
+      "gradient_accumulation_steps": 4,
+      "use_amp": true,
+      "max_grad_norm": 1.0,
+      "weight_decay": 0.01,
+      "max_train_batches": null,
+      "validation_every_epoch": true
+    },
+    "rag": {
+      "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+      "embedding_device": "cpu",
+      "top_k": 3,
+      "index_path": "data/rag_index",
+      "add_slot_signature": true,
+      "query_mode": "structured_slots",
+      "context_chars_per_case": 120,
+      "max_context_chars": 240,
+      "candidate_gate": true,
+      "max_style_cues": 3,
+      "candidate_min_raw_conditioning": 0.9,
+      "max_raw_conditioning_drop_vs_base": 0.02,
+      "rag_aware_epochs": 1,
+      "rag_aware_fraction": 0.5,
+      "rag_aware_lora_learning_rate": 2e-05,
+      "rag_aware_projector_learning_rate": 1e-05
+    },
+    "paths": {
+      "models_dir": "models",
+      "outputs_dir": "outputs",
+      "results_dir": "results",
+      "figures_dir": "results/figures",
+      "experiments_dir": "experiments"
+    },
+    "validation": {
+      "laterality_audit_min_agreement": 0.7,
+      "laterality_audit_min_cases": 20
+    }
+  },
+  "manifest_sha256": "1223686af72c9906e2936d67e54e25023696f749e48119727d3e7e513f342c22",
+  "slot_metadata_sha256": "cf35f77627b7fa83cd79ccd26d353b795a62862606ac2a054e07a77520609ad9",
+  "checkpoint": "models\\segmentation_unet_best.pth",
+  "epochs_requested": 40,
+  "epochs_executed": 40,
+  "best_epoch": 37,
+  "learning_rate": 0.0002,
+  "best_validation_mean_dice": 0.5911280199976666,
+  "scheduler": "ReduceLROnPlateau(validation WT/TC/ET Dice)",
+  "early_stopping_patience": 10
+}

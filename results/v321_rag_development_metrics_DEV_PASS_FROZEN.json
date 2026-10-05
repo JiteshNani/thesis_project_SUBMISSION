@@ -1,0 +1,119 @@
+{
+  "experiment": "V3.2.1 RAG enhanced validation-only ablation",
+  "subset": "development",
+  "n_cases": 27,
+  "test_split_used": false,
+  "design": {
+    "retrieval_count": 2,
+    "retrieval_query": "CNN-predicted structured clinical slots, then frozen 3D visual reranking",
+    "retrieval_source": "training split only",
+    "retrieved_context": "two sanitised TRAIN-report signal-wording snippets; raw reports never inserted",
+    "base_checkpoint": "models\\hybrid3dvlm_trainable.pth",
+    "rag_checkpoint": "models\\hybrid3dvlm_rag_v321.pth",
+    "comparison": [
+      "frozen_base",
+      "rag_adapted_no_retrieval",
+      "rag_adapted_plus_retrieval"
+    ]
+  },
+  "base": {
+    "diagnostics": {
+      "conditioning": 1.0,
+      "ground_truth": 0.9185185185185185,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "lexical": {
+      "rouge1": 0.20731653080544574,
+      "rouge2": 0.02864612742630003,
+      "rougeL": 0.1314395243770006,
+      "meteor": 0.08910283443081436,
+      "bertscore_f1": 0.8499084821453801
+    }
+  },
+  "rag_adapted_no_retrieval": {
+    "diagnostics": {
+      "conditioning": 1.0,
+      "ground_truth": 0.9185185185185185,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "lexical": {
+      "rouge1": 0.21132558700484688,
+      "rouge2": 0.03074572904040289,
+      "rougeL": 0.1346177795521687,
+      "meteor": 0.09371719464157113,
+      "bertscore_f1": 0.848653150929345
+    }
+  },
+  "rag_enhanced": {
+    "diagnostics": {
+      "conditioning": 1.0,
+      "ground_truth": 0.9185185185185185,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "lexical": {
+      "rouge1": 0.2940825513907782,
+      "rouge2": 0.08133463794367773,
+      "rougeL": 0.17390826779291904,
+      "meteor": 0.10935096039253145,
+      "bertscore_f1": 0.8603655982900549
+    },
+    "candidate_acceptance_rate": 1.0,
+    "fallback_rate": 0.0,
+    "output_changed_vs_base_rate": 0.9629629629629629
+  },
+  "rag_minus_base_paired_bootstrap": {
+    "rouge1": {
+      "mean_delta": 0.08676602058533245,
+      "ci95_low": 0.07383743323919927,
+      "ci95_high": 0.09880242610920076,
+      "n": 27
+    },
+    "rouge2": {
+      "mean_delta": 0.05268851051737772,
+      "ci95_low": 0.04038366071953081,
+      "ci95_high": 0.06484581151376381,
+      "n": 27
+    },
+    "rougeL": {
+      "mean_delta": 0.042468743415918456,
+      "ci95_low": 0.03199745182618244,
+      "ci95_high": 0.05329278426948061,
+      "n": 27
+    },
+    "meteor": {
+      "mean_delta": 0.020248125961717076,
+      "ci95_low": 0.014166076538850837,
+      "ci95_high": 0.027718045408280004,
+      "n": 27
+    },
+    "bertscore_f1": {
+      "mean_delta": 0.010457116144674795,
+      "ci95_low": 0.008712155013172716,
+      "ci95_high": 0.012162640856371986,
+      "n": 27
+    }
+  },
+  "interpretation_note": "This is a validation-only RAG ablation. It must not replace the already frozen authoritative V3.1 held-out-test results. RAG is considered useful only if language/semantic metrics improve while structured grounding and safety diagnostics are preserved.",
+  "predeclared_gate": {
+    "safety_preserved": true,
+    "language_metric_deltas": {
+      "rougeL": 0.04246874341591844,
+      "meteor": 0.020248125961717087,
+      "bertscore_f1": 0.010457116144674816
+    },
+    "benefit_rule": "BERTScore > Base and at least one of ROUGE-L/METEOR > Base (or 2 positive metrics if BERTScore unavailable)",
+    "benefit_rule_passed": true,
+    "candidate_acceptance_at_least_50pct": true,
+    "rag_changes_output": true,
+    "passed": true
+  }
+}

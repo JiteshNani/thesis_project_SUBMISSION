@@ -1,0 +1,2718 @@
+[
+  {
+    "case_id": "BraTS20_Training_002",
+    "reference": "The lesion area is in the right frontal lobe, showing a mixture of high and low signal areas, with some appearing as speckled high signals, and in the right temporal lobe with prominent high-signal areas, some of which are accompanied by low signals, and in the right parietal lobe with a mix of high and low signals. Edema is mainly concentrated in the right cerebral hemisphere, particularly noticeable in the frontal and temporal lobes, with significant swelling in tissues surrounding the lesions and a large range of edema affecting nearby normal tissue. Necrosis is a high signal area in the right temporal lobe, suggesting a possible necrotic region with uneven signal intensity, concentrated in one large region, with no obvious widespread necrosis observed. Ventricular compression is exerted pressure on the third ventricle and lateral ventricle, resulting in their deformation.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 0
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 1
+    },
+    "base": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_159",
+        "slot_matches": 5,
+        "text_similarity": 0.9776004552841187,
+        "visual_similarity": 0.996519148349762,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_021",
+        "slot_matches": 5,
+        "text_similarity": 0.9776004552841187,
+        "visual_similarity": 0.9952775835990906,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_040",
+    "reference": "The lesion area is in the bilateral frontal and temporal lobes with a mixed signal of uneven high and low intensity with patchy high signal areas. Edema is pronounced, chiefly observed in the bilateral lateral frontal lobes, with significant swelling of surrounding tissues, extensive and extending into the temporal lobes. Necrosis is located at the center of the bilateral lateral frontal lobes, characterized by high signal areas interspersed with low signals, primarily in the aforementioned areas. Ventricular compression is notably present as the right ventricle is compressed and deformed, whereas the left ventricle maintains a normal shape.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 1
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 2
+    },
+    "base": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nOne concise summary sentence consistent with the structured findings described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_226",
+        "slot_matches": 5,
+        "text_similarity": 0.979254961013794,
+        "visual_similarity": 0.99796462059021,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_156",
+        "slot_matches": 5,
+        "text_similarity": 0.979254961013794,
+        "visual_similarity": 0.9967347979545593,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_043",
+    "reference": "The lesion area is in the right frontal and parietal regions with mixed high and low signals with patchy high-signal areas. Edema is prominent, concentrated in the right frontal and parietal lobes, with a minor extension to the temporal lobe, showing significant high signals. Necrosis is mostly observed in the right parietal and occipital lobes, appearing as low signals interspersed with some high-signal areas. Ventricular compression is notable on the lateral ventricles, with the lesion areas exerting a certain compressive effect on the ventricles.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 0
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 0
+    },
+    "base": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_128",
+        "slot_matches": 5,
+        "text_similarity": 1.0000001192092896,
+        "visual_similarity": 0.9991148710250854,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_046",
+        "slot_matches": 5,
+        "text_similarity": 0.9801011085510254,
+        "visual_similarity": 0.9989851713180542,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_064",
+    "reference": "The lesion area is in the right frontal and parietal lobes with mixed signals of varying intensity and patchy high-signal areas. Edema is located around the right frontal and parietal lobe regions with pronounced high-signal areas, indicating significant swelling in the tissues surrounding the lesions. Necrosis is mainly at the center of the lesions in the right frontal lobe region with lower signal intensity and higher heterogeneity. Ventricular compression is indicated by the right ventricle being narrowed, suggesting compression.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 1
+    },
+    "base": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_231",
+        "slot_matches": 5,
+        "text_similarity": 0.9740902781486511,
+        "visual_similarity": 0.9979663491249084,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_001",
+        "slot_matches": 5,
+        "text_similarity": 1.0,
+        "visual_similarity": 0.9967014193534851,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_070",
+    "reference": "The lesion area is in the right hemisphere of the brain with a mix of heterogeneous high and low signals, mainly located in the right frontal and parietal lobes, characterized by patchy high-signal regions. Edema is seen surrounding the lesions, particularly concentrated in the tissues around them, indicating a large area of edema with considerable impact, extending along the edges of the lesions. Necrosis is suggested by multiple low-signal areas within the lesion area, more evident in the central portions, displaying irregular distribution mixed among the high-signal areas. Ventricular compression is present with the lateral ventricle near the lesion being compressed and narrowed.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 0
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 0
+    },
+    "base": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_129",
+        "slot_matches": 5,
+        "text_similarity": 1.0,
+        "visual_similarity": 0.9978914260864258,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_177",
+        "slot_matches": 5,
+        "text_similarity": 0.979832112789154,
+        "visual_similarity": 0.9974040389060974,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_072",
+    "reference": "The lesion area is in the frontal and parietal regions of the left hemisphere with mixed signal intensities of varying levels and speckled high-intensity signal areas. Edema is primarily concentrated in the peripheral regions of the left frontal and parietal lobes, indicating moderate to severe swelling of the tissues surrounding the lesions. Necrosis is observed in some lesion areas displaying low signal intensity interspersed within regions of high and isointense signals, showing a certain mottled appearance. Ventricular compression is mild deformation of the ventricles, suggesting pressure effects of the lesions on these regions.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 1
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 1
+    },
+    "base": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLeft-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_219",
+        "slot_matches": 5,
+        "text_similarity": 0.9777418375015259,
+        "visual_similarity": 0.9983177781105042,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_226",
+        "slot_matches": 5,
+        "text_similarity": 0.979254961013794,
+        "visual_similarity": 0.9974841475486755,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_075",
+    "reference": "The lesion area is in the left parietal and occipital regions with a mixed pattern of heterogeneous high and low signals. Edema is marked and mainly concentrated around the tissue in the left occipital region. Necrosis is in the left parietal and left occipital regions, characterized by low signal areas that are quite scattered. Ventricular compression is not observed.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 2
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 2
+    },
+    "base": "Findings:\nThere is a large left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge left-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a large left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge left-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a large left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a large left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a large left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities.\n\nImpression:\nLarge left-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a large left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities.\n\nImpression:\nLarge left-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_210",
+        "slot_matches": 5,
+        "text_similarity": 0.9741728901863098,
+        "visual_similarity": 0.9896739721298218,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities."
+      },
+      {
+        "case_id": "BraTS20_Training_163",
+        "slot_matches": 5,
+        "text_similarity": 0.9728251099586487,
+        "visual_similarity": 0.9834131002426147,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a large left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities.\n\nImpression:\nLarge left-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_086",
+    "reference": "The lesion area is in the right frontal lobe with a mix of high and low signals distributed in a speckled pattern and a notable high signal area in the right temporal lobe. Edema is significant, with high intensity surrounding the right temporal lobe and moderate signals near the right parietal lobe, widespread mainly around the lesion areas. Necrosis is a low signal area at the junction of the right frontal and temporal lobes and a small, concentrated area deep within the right parietal lobe. Ventricular compression is observed, with the right ventricle notably compressed and slight morphological changes.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 0
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 0
+    },
+    "base": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_028",
+        "slot_matches": 5,
+        "text_similarity": 0.9767894148826599,
+        "visual_similarity": 0.9983131289482117,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_128",
+        "slot_matches": 5,
+        "text_similarity": 1.0000001192092896,
+        "visual_similarity": 0.9972870349884033,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_088",
+    "reference": "The lesion area is in the right frontal lobe and temporal lobe with heterogeneous signals and spotty high-signal areas. Edema is significant with high-signal areas observed around the right temporal lobe, extending into the frontal and parietal lobes, indicating substantial swelling in the tissues surrounding the lesion. Necrosis is present in the central region of the lesion with a distinctly low signal, and irregular high-signal imagery at the edges, suggesting a potential necrotic area. Ventricular compression is marked compression of the ventricles on the affected side.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 0
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 0
+    },
+    "base": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_128",
+        "slot_matches": 5,
+        "text_similarity": 1.0000001192092896,
+        "visual_similarity": 0.998960554599762,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_046",
+        "slot_matches": 5,
+        "text_similarity": 0.9801011085510254,
+        "visual_similarity": 0.9988745450973511,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_100",
+    "reference": "The lesion area is in the right parietal lobe and occipital lobe with uneven signal intensity and patchy high signal areas. Edema is characterized by diffuse high signals, affecting a large area, and is mainly observed in the right frontal and parietal regions. Necrosis is suggested by large low-signal areas with mixed signal intensity primarily located in the right frontal and parietal lobes. Ventricular compression is exerted by lesions on the right side, leading to slight alteration in ventricular morphology.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "base": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_231",
+        "slot_matches": 5,
+        "text_similarity": 0.9740902781486511,
+        "visual_similarity": 0.9974521398544312,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_270",
+        "slot_matches": 5,
+        "text_similarity": 0.9750713109970093,
+        "visual_similarity": 0.9966919422149658,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_104",
+    "reference": "The lesion area is in the right cerebral hemisphere with heterogeneous mixed signals and speckled high-signal areas. Edema is significant, mainly observed in the right cerebral hemisphere, particularly in localized areas of the right frontal and temporal lobes with a notable extent. Necrosis is present with significantly low signals, indicating possible necrotic tissue presence. The necrosis areas display mixed signal characteristics and are scattered across the right frontal, temporal, and parietal lobes with a degree of heterogeneity. Ventricular compression is evident on the right, indicating that the lesion is exerting pressure on the ventricle.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "base": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_237",
+        "slot_matches": 5,
+        "text_similarity": 0.9750713109970093,
+        "visual_similarity": 0.9980431199073792,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_270",
+        "slot_matches": 5,
+        "text_similarity": 0.9750713109970093,
+        "visual_similarity": 0.9972622394561768,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_117",
+    "reference": "The lesion area is in the left temporal and parietal lobes, affecting parts of the frontal and occipital lobes, with mixed heterogeneous signals and speckled high-signal areas. Edema is present in the left cerebral region, particularly around the left temporal, parietal, and parts of the frontal lobes, with a large area of edema present. Necrosis is within the lesion area, particularly in the high-signal regions, with low-signal areas detected, suggesting a mixed signal pattern concentrated in the left temporal region. Ventricular compression is observed, with signs of compression from the left-sided lesion on the brain tissue and ventricles, leading to the right ventricle appearing slightly enlarged compared to the left.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 1
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 1
+    },
+    "base": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_101",
+        "slot_matches": 5,
+        "text_similarity": 0.9777418375015259,
+        "visual_similarity": 0.9991519451141357,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_194",
+        "slot_matches": 5,
+        "text_similarity": 1.000000238418579,
+        "visual_similarity": 0.9981038570404053,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_118",
+    "reference": "The lesion area is in the right frontal and parietal regions with a mixture of heterogeneous signals. Edema is mainly around the lesions, particularly near the right frontal and parietal lesion areas, with significant extent. Necrosis is a potential necrotic area that may be concentrated in the right parietal region with low signal intensity and mixed internal signals. Ventricular compression is described as the right lateral ventricle being visibly compressed, with deformation and a reduction in volume.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 0
+    },
+    "base": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_293",
+        "slot_matches": 5,
+        "text_similarity": 0.9750713109970093,
+        "visual_similarity": 0.9938767552375793,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_307",
+        "slot_matches": 5,
+        "text_similarity": 0.9740902781486511,
+        "visual_similarity": 0.993445634841919,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_124",
+    "reference": "The lesion area is in the right temporal and parietal lobes with a mixed signal pattern of heterogeneous high and low signals with some speckled high signal areas. Edema is extensive, involving a large area of both gray and white matter, primarily observed in the right temporal lobe. Necrosis is in parts of the right parietal region with low and mixed signals. Ventricular compression is not observed, and the lateral ventricles appear unchanged in shape.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "base": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_316",
+        "slot_matches": 5,
+        "text_similarity": 0.9776052236557007,
+        "visual_similarity": 0.9980126023292542,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_308",
+        "slot_matches": 5,
+        "text_similarity": 0.9740902781486511,
+        "visual_similarity": 0.9977383613586426,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_143",
+    "reference": "The lesion area is in the left frontal lobe with high signal intensity, characterized by mixed heterogeneous and spotty high signal, suggesting the presence of multiple lesions. Edema is quite prominent, mainly concentrated in the left frontal lobe, with surrounding tissues showing significant swelling and widespread edema. Necrosis is indicated by low signal areas in the left frontal lobe, displaying a high degree of heterogeneity. Sparse low signal areas are noted in the left parietal lobe, suggesting small areas of necrosis. Ventricular compression is observed as slight compression on the left lateral ventricle, suggesting limited impact from the lesion area.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 0
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 2
+    },
+    "base": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_182",
+        "slot_matches": 5,
+        "text_similarity": 0.9754215478897095,
+        "visual_similarity": 0.9984341263771057,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_131",
+        "slot_matches": 5,
+        "text_similarity": 1.0000001192092896,
+        "visual_similarity": 0.9975507259368896,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_158",
+    "reference": "The lesion area is in the left temporal and occipital lobes with heterogeneous signal intensities, including regions of high and isointense signals. Edema is observed in the left temporal and occipital regions, presenting as high-signal areas, indicating significant swelling of the surrounding tissue in the vicinity of the lesions. Necrosis is indicated by mixed high and isointense signals, primarily adjacent to the marked high-signal lesion areas on the left side, appearing scattered. Ventricular compression is not clearly demonstrated in the images, as the ventricles are not explicitly shown.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 0
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 0
+    },
+    "base": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates uneven heterogeneous signal intensity.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_122",
+        "slot_matches": 5,
+        "text_similarity": 0.9767894148826599,
+        "visual_similarity": 0.9986345767974854,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_227",
+        "slot_matches": 5,
+        "text_similarity": 1.0000001192092896,
+        "visual_similarity": 0.9983519315719604,
+        "snippet": "The lesion demonstrates uneven heterogeneous signal intensity."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_168",
+    "reference": "The lesion area is in the right parietal lobe with a mixture of heterogeneous signals, including speckled high-signal regions. Edema is significant and mainly concentrated in the right parietal lobe and surrounding areas, with large areas of high-signal regions indicating notable swelling. Necrosis is observed within the lesion area of the left parietal lobe, appearing as large low-signal areas suggesting the presence of necrosis, scattered within the lesion but focused in a primary zone. Ventricular compression is observed in the right lateral ventricle, which is compressed and deformed, while the left lateral ventricle is enlarged, suggesting the lesion is exerting considerable pressure on the ventricular system.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "base": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates heterogeneous signal characteristics.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_293",
+        "slot_matches": 5,
+        "text_similarity": 0.9750713109970093,
+        "visual_similarity": 0.9976089596748352,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_243",
+        "slot_matches": 5,
+        "text_similarity": 0.9740902781486511,
+        "visual_similarity": 0.9976009130477905,
+        "snippet": "The lesion demonstrates heterogeneous signal characteristics."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_171",
+    "reference": "The lesion area is in the right frontal, temporal, and occipital lobes with mixed heterogeneous signals with speckled high-signal regions. Edema is present and significant, concentrated near the lesions and covering parts of the right frontal and occipital lobes, reflecting swelling and accumulation of fluid in the tissues, extending over a large area of brain tissue. Necrosis is observed as distinct low-signal intensity areas, with a mixed signal appearance primarily distributed in the right parietal and deep frontal regions, appearing as large, concentrated block-like distributions. Ventricular compression is noted with ventricles under pressure, but no significant narrowing or dilation is observed.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "base": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_270",
+        "slot_matches": 5,
+        "text_similarity": 0.9750713109970093,
+        "visual_similarity": 0.998411238193512,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_237",
+        "slot_matches": 5,
+        "text_similarity": 0.9750713109970093,
+        "visual_similarity": 0.998353123664856,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_189",
+    "reference": "The lesion area is in the right parietal lobe with uneven high and low signal areas, exhibiting a mottled high signal. Edema is extensive and mainly located in the right parietal lobe region. Necrosis is in the core region of the right parietal lesion and is scattered in distribution, with a mixed signal intensity displaying low signals. Ventricular compression is mildly compressed, but no significant deformation or displacement is observed.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 1
+    },
+    "base": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_308",
+        "slot_matches": 5,
+        "text_similarity": 0.9740902781486511,
+        "visual_similarity": 0.9964717626571655,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_274",
+        "slot_matches": 5,
+        "text_similarity": 0.9740902781486511,
+        "visual_similarity": 0.9960564970970154,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_225",
+    "reference": "The lesion area is in the frontal and temporal lobes of the left cerebral hemisphere with mixed signals, exhibiting heterogeneous high and low areas, as well as speckled high signal regions. Edema is significant surrounding the lesion in the left hemisphere, particularly in areas proximal to the lesion, and further compresses the adjacent healthy brain tissue. Necrosis is observed as multiple low-signal regions within the lesion area, scattered but primarily concentrated in the central region of the largest lesion. Ventricular compression is notable as the left lateral ventricle is notably compressed and appears slightly flattened, confirming the lesion's compressive effect on the ventricular system.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "base": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates patchy high-signal areas within a heterogeneous signal pattern.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_062",
+        "slot_matches": 5,
+        "text_similarity": 0.9750713109970093,
+        "visual_similarity": 0.9982644319534302,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_223",
+        "slot_matches": 5,
+        "text_similarity": 0.9740902781486511,
+        "visual_similarity": 0.9976266622543335,
+        "snippet": "The lesion demonstrates patchy high-signal areas within a heterogeneous signal pattern."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_278",
+    "reference": "The lesion area is in the brain with heterogeneous mixed signals and speckled high-signal areas. Edema is present with distinct high-signal areas suggesting significant edema presence in these regions with blurred margins and uniformly high signals. Necrosis is indicated by some low-signal areas with a relatively dispersed distribution. Ventricular compression is not observed.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 0
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 0,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 1
+    },
+    "base": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.6,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.6,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.6,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_260",
+        "slot_matches": 5,
+        "text_similarity": 1.0,
+        "visual_similarity": 0.9961314797401428,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_061",
+        "slot_matches": 5,
+        "text_similarity": 0.9765363335609436,
+        "visual_similarity": 0.9944568872451782,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_292",
+    "reference": "The lesion area is in the right cerebral region, particularly involving the frontal and temporal lobes, with a mix of heterogeneous high and low signals, along with some spotty high signal areas. Edema is significant with signals around the right frontal and temporal lobes, suggesting a high degree of tissue swelling in these areas, and covers the main lesion areas. Necrosis is present within the lesion areas of the right frontal and temporal lobes, with regions showing significantly reduced signal intensity, mixed with both low signals and localized high signals scattered throughout. Ventricular compression is not observed.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 0
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 1
+    },
+    "base": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.6,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.6,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.6,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_253",
+        "slot_matches": 5,
+        "text_similarity": 0.9789077639579773,
+        "visual_similarity": 0.9986835718154907,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_341",
+        "slot_matches": 5,
+        "text_similarity": 0.9801011085510254,
+        "visual_similarity": 0.9980335235595703,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a small left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall left-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_296",
+    "reference": "The lesion area is in the occipital and parietal regions of the left hemisphere with a mix of heterogeneous high and low signals with some speckled high-signal areas. Edema is notable, mainly concentrated near the left occipital and parietal lobes. Necrosis is within the high-signal lesion areas, with some spots of lower signals, exhibiting a high degree of heterogeneity, primarily concentrated in the central region of the lesions. Ventricular compression is with the left ventricle deformed due to compression.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 1
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 2
+    },
+    "base": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_218",
+        "slot_matches": 5,
+        "text_similarity": 0.9777418375015259,
+        "visual_similarity": 0.9987627863883972,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities."
+      },
+      {
+        "case_id": "BraTS20_Training_285",
+        "slot_matches": 5,
+        "text_similarity": 0.9777418375015259,
+        "visual_similarity": 0.9984711408615112,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_310",
+    "reference": "The lesion area is in the central image, right frontal lobes, and temporal lobe regions (anterior and middle parts) with mixed signal intensity, with prominent speckled high-signal regions suggesting the presence of multiple lesions. Edema is significant, present around the lesions in the right frontal and temporal lobes, characterized by persistent high signal intensity, with extensive extent indicating pronounced swelling of surrounding tissues. Necrosis is observed in parts of the right parietal and frontal lobes, characterized by alternating regions of diffuse inhomogeneous low and high signal intensities, with unclear boundaries and a high degree of signal mixing. Ventricular compression is mild, with deformation of the right lateral ventricle, suggesting a gradually increasing mass effect.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 0,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "base": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_293",
+        "slot_matches": 5,
+        "text_similarity": 0.9750713109970093,
+        "visual_similarity": 0.9985821843147278,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_354",
+        "slot_matches": 5,
+        "text_similarity": 0.9750713109970093,
+        "visual_similarity": 0.9981394410133362,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_329",
+    "reference": "The lesion area is in the frontal lobe region, particularly in the right frontal lobe, with heterogeneous mixed signals. Edema is significant around the aforementioned lesions, with pronounced surrounding tissue edema indicating a relatively high degree of tissue swelling, and relatively mild edema signal in the parietal lobe suggesting the lesion's effect on surrounding tissues. Necrosis is present in some lesion areas, with low signals in the center of the lesion on the right frontal lobe suggesting possible necrotic regions, and localized low signals in the parietal lobe suggesting possible localized necrotic areas. Ventricular compression is observed with the right lateral ventricle compressed and deformed, with a slight shift in the right lateral ventricle.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 0
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 0,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 0
+    },
+    "base": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_325",
+        "slot_matches": 5,
+        "text_similarity": 0.9776004552841187,
+        "visual_similarity": 0.9977426528930664,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_177",
+        "slot_matches": 5,
+        "text_similarity": 0.979832112789154,
+        "visual_similarity": 0.9969625473022461,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a small right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nSmall right-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_344",
+    "reference": "The lesion area is in the left hemisphere, particularly in the frontal and temporal lobes, with a mix of heterogeneous high and low signals and spotty high signal areas, indicating multiple lesions. Edema is prominent, with high signals primarily in the left frontal and temporal lobes, significantly affecting the structure of normal brain tissue. Necrosis is possible within the primary lesion region, particularly in the left frontal and temporal lobes, with low signal intensity contrasting with high signal surrounding edematous regions. Ventricular compression is observed as the left ventricle appears deformed and reduced in size due to compression from the left-side lesions.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 1
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 1
+    },
+    "base": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_285",
+        "slot_matches": 5,
+        "text_similarity": 0.9777418375015259,
+        "visual_similarity": 0.9984278082847595,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities."
+      },
+      {
+        "case_id": "BraTS20_Training_181",
+        "slot_matches": 5,
+        "text_similarity": 0.9823135137557983,
+        "visual_similarity": 0.9976626038551331,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a moderate left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities.\n\nImpression:\nModerate left-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_349",
+    "reference": "The lesion area is in the right parietal and occipital lobes of the brain with heterogeneous distribution, characterized by mixed high, iso, and low signals. Edema is significant, distributed primarily in the right parietal and occipital lobes, with noticeable swelling in the surrounding tissues of the lesions, covering most of these lobes. Necrosis is in the central region of the lesions, with low signal contrasting the surrounding high signal, located in the deeper tissues of the right occipital lobe. Ventricular compression is observed, with the right lateral ventricle compressed and deformed, and the left lateral ventricle mildly enlarged.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 1,
+      "extent": 2
+    },
+    "base": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 1.0,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_062",
+        "slot_matches": 5,
+        "text_similarity": 0.9750713109970093,
+        "visual_similarity": 0.9952508211135864,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_256",
+        "slot_matches": 5,
+        "text_similarity": 0.9740902781486511,
+        "visual_similarity": 0.9948532581329346,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a large right-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge right-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  },
+  {
+    "case_id": "BraTS20_Training_361",
+    "reference": "The lesion area is in the left frontal and parietal lobes with mixed high and low signals. Edema is significant, with a large high-signal area visible in the left parietal lobe, spreading to the temporal lobe. Necrosis is a low signal area seen in the left frontal lobe, possibly indicating necrosis, with uneven signal intensity intermingled with the surrounding high signal lesion and edema areas. Ventricular compression is observed, with the left ventricle noticeably deformed and slightly narrowed.",
+    "predicted_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 2
+    },
+    "ground_truth_slots": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 1
+    },
+    "base": "Findings:\nThere is a large left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge left-sided brain tumour with structured findings as described above.",
+    "base_raw": "Findings:\nThere is a large left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates heterogeneous signal characteristics.\n\nImpression:\nLarge left-sided brain tumour with structured findings as described above.",
+    "base_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "adapted_no_rag": "Findings:\nThere is a large left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_raw": "Findings:\nThere is a large left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates mixed signal characteristics.\n\nImpression:\nLarge left-sided brain tumour with structured findings as described above.",
+    "adapted_no_rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag": "Findings:\nThere is a large left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge left-sided brain tumour with structured findings as described above.",
+    "rag_raw": "Findings:\nThere is a large left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge left-sided brain tumour with structured findings as described above.",
+    "rag_diag": {
+      "conditioning": 1.0,
+      "ground_truth": 0.8,
+      "structure": 1.0,
+      "unsupported": 0.0,
+      "prompt_leakage": 0.0,
+      "truncation": 0.0
+    },
+    "rag_context": "Exemplar 1: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\nExemplar 2: The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.",
+    "retrieved_cases": [
+      {
+        "case_id": "BraTS20_Training_254",
+        "slot_matches": 5,
+        "text_similarity": 0.9741728901863098,
+        "visual_similarity": 0.9889565706253052,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      },
+      {
+        "case_id": "BraTS20_Training_362",
+        "slot_matches": 5,
+        "text_similarity": 0.9765068292617798,
+        "visual_similarity": 0.988365650177002,
+        "snippet": "The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas."
+      }
+    ],
+    "rag_candidate_normalized": "Findings:\nThere is a large left-hemisphere intra-axial tumour. Surrounding oedema is present. An enhancing tumour component is present. A necrotic/non-enhancing core is present. The lesion demonstrates a heterogeneous mixture of high- and low-signal intensities with patchy high-signal areas.\n\nImpression:\nLarge left-sided brain tumour with structured findings as described above.",
+    "rag_candidate_raw_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_selection": "rag_candidate",
+    "base_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    },
+    "rag_candidate_diagnostics": {
+      "conditioning_consistency": 1.0,
+      "structure_compliant": true,
+      "unsupported_flags": [],
+      "unsupported_flag_count": 0,
+      "prompt_leakage_flags": [],
+      "prompt_leakage": false,
+      "non_english_fragment": false,
+      "truncated_or_incomplete": false
+    }
+  }
+]

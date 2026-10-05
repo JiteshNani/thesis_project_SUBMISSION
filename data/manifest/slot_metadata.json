@@ -1,0 +1,83 @@
+{
+  "split_seed": 42,
+  "complete_cases": 368,
+  "split_counts": {
+    "train": 257,
+    "test": 56,
+    "val": 55
+  },
+  "extent_thresholds_original_voxels": [
+    66715.33333333333,
+    122864.0
+  ],
+  "extent_definition": "training-set tertiles of whole-tumour voxel count",
+  "hemisphere_definition": "dominant tumour volume in canonical RAS world-x coordinates; case-specific midline from nonzero FLAIR brain bounds; midline-plane voxels reported separately; exact side ties flagged ambiguous",
+  "slot_distributions": {
+    "train": {
+      "edema": {
+        "1": 256,
+        "0": 1
+      },
+      "enhancing": {
+        "1": 238,
+        "0": 19
+      },
+      "necrotic": {
+        "1": 256,
+        "0": 1
+      },
+      "hemisphere": {
+        "1": 116,
+        "0": 141
+      },
+      "extent": {
+        "2": 86,
+        "0": 86,
+        "1": 85
+      }
+    },
+    "val": {
+      "edema": {
+        "1": 55
+      },
+      "enhancing": {
+        "1": 51,
+        "0": 4
+      },
+      "necrotic": {
+        "1": 55
+      },
+      "hemisphere": {
+        "1": 35,
+        "0": 20
+      },
+      "extent": {
+        "1": 15,
+        "2": 20,
+        "0": 20
+      }
+    },
+    "test": {
+      "edema": {
+        "1": 56
+      },
+      "enhancing": {
+        "1": 52,
+        "0": 4
+      },
+      "necrotic": {
+        "1": 56
+      },
+      "hemisphere": {
+        "0": 28,
+        "1": 28
+      },
+      "extent": {
+        "0": 24,
+        "2": 19,
+        "1": 13
+      }
+    }
+  },
+  "skipped_cases": 1
+}

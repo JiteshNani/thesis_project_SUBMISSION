@@ -1,0 +1,6349 @@
+{
+  "provenance": {
+    "code_fingerprint_sha256": "fbeeea88ecdab0869ebb06af2a1d993a87b8ff31692b5b052dc0cd6c043fd84e",
+    "manifest_sha256": "1223686af72c9906e2936d67e54e25023696f749e48119727d3e7e513f342c22",
+    "slot_metadata_sha256": "cf35f77627b7fa83cd79ccd26d353b795a62862606ac2a054e07a77520609ad9",
+    "pip_freeze_path": "results/pip_freeze.txt",
+    "pip_freeze_sha256": "af37899513b0a9714168672dec5810291992ac5da7f5860466ee2259c0dbd568",
+    "random_seed": 42,
+    "method_names": {
+      "template_gt_oracle": "Ground-truth-slot constrained template (oracle upper bound)",
+      "cnn_template": "CNN-predicted-slot constrained template",
+      "vlm_base": "Hybrid structured-and-visual VLM",
+      "vlm_rag": "Hybrid structured-and-visual VLM + train-only RAG"
+    },
+    "interpretation_note": "Rule-based unsupported-content flags are conservative automated diagnostics, not a clinically validated hallucination metric."
+  },
+  "execution_environment": {
+    "selected_device": "cuda",
+    "torch_version": "2.13.0+cu126",
+    "cuda_available": true,
+    "cuda_build": "12.6",
+    "gpu_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "gpu_vram_gib": 5.997
+  },
+  "dataset_and_split": {
+    "split_seed": 42,
+    "complete_cases": 368,
+    "split_counts": {
+      "train": 257,
+      "test": 56,
+      "val": 55
+    },
+    "extent_thresholds_original_voxels": [
+      66715.33333333333,
+      122864.0
+    ],
+    "extent_definition": "training-set tertiles of whole-tumour voxel count",
+    "hemisphere_definition": "dominant tumour volume in canonical RAS world-x coordinates; case-specific midline from nonzero FLAIR brain bounds; midline-plane voxels reported separately; exact side ties flagged ambiguous",
+    "slot_distributions": {
+      "train": {
+        "edema": {
+          "1": 256,
+          "0": 1
+        },
+        "enhancing": {
+          "1": 238,
+          "0": 19
+        },
+        "necrotic": {
+          "1": 256,
+          "0": 1
+        },
+        "hemisphere": {
+          "1": 116,
+          "0": 141
+        },
+        "extent": {
+          "2": 86,
+          "0": 86,
+          "1": 85
+        }
+      },
+      "val": {
+        "edema": {
+          "1": 55
+        },
+        "enhancing": {
+          "1": 51,
+          "0": 4
+        },
+        "necrotic": {
+          "1": 55
+        },
+        "hemisphere": {
+          "1": 35,
+          "0": 20
+        },
+        "extent": {
+          "1": 15,
+          "2": 20,
+          "0": 20
+        }
+      },
+      "test": {
+        "edema": {
+          "1": 56
+        },
+        "enhancing": {
+          "1": 52,
+          "0": 4
+        },
+        "necrotic": {
+          "1": 56
+        },
+        "hemisphere": {
+          "0": 28,
+          "1": 28
+        },
+        "extent": {
+          "0": 24,
+          "2": 19,
+          "1": 13
+        }
+      }
+    },
+    "skipped_cases": 1
+  },
+  "configuration": {
+    "slot_model": {
+      "backbone_channels": 16,
+      "dropout": 0.2,
+      "epochs": 12,
+      "batch_size": 2,
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "num_workers": 0,
+      "use_amp": true,
+      "use_class_weights": true
+    },
+    "segmentation": {
+      "epochs": 40,
+      "batch_size": 1,
+      "learning_rate": 0.0002,
+      "min_learning_rate": 2e-05,
+      "weight_decay": 1e-05,
+      "num_workers": 0,
+      "use_amp": true,
+      "channels": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "strides": [
+        2,
+        2,
+        2
+      ],
+      "num_res_units": 2,
+      "augment_probability": 0.65,
+      "flip_probability": 0.25,
+      "max_rotation_degrees": 10.0,
+      "intensity_scale": 0.1,
+      "max_grad_norm": 1.0,
+      "scheduler_factor": 0.5,
+      "scheduler_patience": 4,
+      "min_epochs": 20,
+      "early_stopping_patience": 10,
+      "early_stopping_min_delta": 0.0001
+    },
+    "vlm": {
+      "llm_model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+      "num_visual_tokens": 8,
+      "vision_channels": [
+        16,
+        32,
+        64
+      ],
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "lora_dropout": 0.05,
+      "lora_target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "gradient_checkpointing": true,
+      "max_prompt_length": 512,
+      "max_target_length": 220,
+      "max_new_tokens": 160,
+      "temperature": 0.0,
+      "do_sample": false,
+      "top_p": 0.92,
+      "repetition_penalty": 1.0,
+      "no_repeat_ngram_size": 0,
+      "grounded_target_reference_chars": 220,
+      "epochs": 8,
+      "batch_size": 1,
+      "lora_learning_rate": 0.0001,
+      "projector_learning_rate": 5e-05,
+      "gradient_accumulation_steps": 4,
+      "use_amp": true,
+      "max_grad_norm": 1.0,
+      "weight_decay": 0.01,
+      "max_train_batches": null,
+      "validation_every_epoch": true
+    },
+    "rag": {
+      "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+      "embedding_device": "cpu",
+      "top_k": 3,
+      "index_path": "data/rag_index",
+      "add_slot_signature": true,
+      "query_mode": "structured_slots",
+      "context_chars_per_case": 120,
+      "max_context_chars": 240,
+      "candidate_gate": true,
+      "max_style_cues": 3,
+      "candidate_min_raw_conditioning": 0.9,
+      "max_raw_conditioning_drop_vs_base": 0.02,
+      "rag_aware_epochs": 1,
+      "rag_aware_fraction": 0.5,
+      "rag_aware_lora_learning_rate": 2e-05,
+      "rag_aware_projector_learning_rate": 1e-05
+    },
+    "data": {
+      "split_seed": 42,
+      "train_ratio": 0.7,
+      "val_ratio": 0.15,
+      "test_ratio": 0.15,
+      "target_shape": [
+        128,
+        128,
+        128
+      ],
+      "intensity_clip": [
+        -3.0,
+        3.0
+      ],
+      "extent_quantiles": [
+        0.333333,
+        0.666667
+      ]
+    }
+  },
+  "checkpoints": {
+    "slot_cnn": {
+      "path": "models\\slot_model_best.pth",
+      "exists": true,
+      "sha256": "977da9e1bd205e7e9861bdef68f951034a4b34fd574ebec659e5ca81d4501b99",
+      "produced_by": "train_slot_model.py"
+    },
+    "segmentation_unet": {
+      "path": "models\\segmentation_unet_best.pth",
+      "exists": true,
+      "sha256": "ccb8c48cc32fe73a0ab08525e99e432902eb4b46737d65fc83eb29979457d563",
+      "produced_by": "train_segmentation_model.py"
+    },
+    "hybrid_vlm_trainable": {
+      "path": "models\\hybrid3dvlm_trainable.pth",
+      "exists": true,
+      "sha256": "2613798bdb8b71e54d8ca0bfa0be80750a74ea16431f0bf88e8e5867b2140d66",
+      "produced_by": "train_vlm.py"
+    }
+  },
+  "run_metadata": {
+    "slot": {
+      "code_fingerprint_sha256": "fbeeea88ecdab0869ebb06af2a1d993a87b8ff31692b5b052dc0cd6c043fd84e",
+      "torch_version": "2.13.0+cu126",
+      "cuda_available": true,
+      "cuda_version": "12.6",
+      "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "config": {
+        "project": {
+          "name": "Reliable and Grounded Vision-Language Analysis for Structured Brain Tumor MRI Report Generation",
+          "seed": 42
+        },
+        "data": {
+          "raw_dir": "data/raw",
+          "manifest_path": "data/manifest/manifest.csv",
+          "skipped_path": "data/manifest/skipped_incomplete_cases.csv",
+          "metadata_path": "data/manifest/slot_metadata.json",
+          "split_seed": 42,
+          "train_ratio": 0.7,
+          "val_ratio": 0.15,
+          "test_ratio": 0.15,
+          "target_shape": [
+            128,
+            128,
+            128
+          ],
+          "intensity_clip": [
+            -3.0,
+            3.0
+          ],
+          "extent_quantiles": [
+            0.333333,
+            0.666667
+          ],
+          "report_suffix": "_flair_text.txt"
+        },
+        "slot_model": {
+          "backbone_channels": 16,
+          "dropout": 0.2,
+          "epochs": 12,
+          "batch_size": 2,
+          "learning_rate": 0.001,
+          "weight_decay": 0.0001,
+          "num_workers": 0,
+          "use_amp": true,
+          "use_class_weights": true
+        },
+        "segmentation": {
+          "epochs": 40,
+          "batch_size": 1,
+          "learning_rate": 0.0002,
+          "min_learning_rate": 2e-05,
+          "weight_decay": 1e-05,
+          "num_workers": 0,
+          "use_amp": true,
+          "channels": [
+            8,
+            16,
+            32,
+            64
+          ],
+          "strides": [
+            2,
+            2,
+            2
+          ],
+          "num_res_units": 2,
+          "augment_probability": 0.65,
+          "flip_probability": 0.25,
+          "max_rotation_degrees": 10.0,
+          "intensity_scale": 0.1,
+          "max_grad_norm": 1.0,
+          "scheduler_factor": 0.5,
+          "scheduler_patience": 4,
+          "min_epochs": 20,
+          "early_stopping_patience": 10,
+          "early_stopping_min_delta": 0.0001
+        },
+        "vlm": {
+          "llm_model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+          "num_visual_tokens": 8,
+          "vision_channels": [
+            16,
+            32,
+            64
+          ],
+          "lora_rank": 16,
+          "lora_alpha": 32,
+          "lora_dropout": 0.05,
+          "lora_target_modules": [
+            "q_proj",
+            "v_proj"
+          ],
+          "gradient_checkpointing": true,
+          "max_prompt_length": 512,
+          "max_target_length": 220,
+          "max_new_tokens": 160,
+          "temperature": 0.0,
+          "do_sample": false,
+          "top_p": 0.92,
+          "repetition_penalty": 1.0,
+          "no_repeat_ngram_size": 0,
+          "grounded_target_reference_chars": 220,
+          "epochs": 8,
+          "batch_size": 1,
+          "lora_learning_rate": 0.0001,
+          "projector_learning_rate": 5e-05,
+          "gradient_accumulation_steps": 4,
+          "use_amp": true,
+          "max_grad_norm": 1.0,
+          "weight_decay": 0.01,
+          "max_train_batches": null,
+          "validation_every_epoch": true
+        },
+        "rag": {
+          "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+          "embedding_device": "cpu",
+          "top_k": 3,
+          "index_path": "data/rag_index",
+          "add_slot_signature": true,
+          "query_mode": "structured_slots",
+          "context_chars_per_case": 120,
+          "max_context_chars": 240,
+          "candidate_gate": true,
+          "max_style_cues": 3,
+          "candidate_min_raw_conditioning": 0.9,
+          "max_raw_conditioning_drop_vs_base": 0.02,
+          "rag_aware_epochs": 1,
+          "rag_aware_fraction": 0.5,
+          "rag_aware_lora_learning_rate": 2e-05,
+          "rag_aware_projector_learning_rate": 1e-05
+        },
+        "paths": {
+          "models_dir": "models",
+          "outputs_dir": "outputs",
+          "results_dir": "results",
+          "figures_dir": "results/figures",
+          "experiments_dir": "experiments"
+        },
+        "validation": {
+          "laterality_audit_min_agreement": 0.7,
+          "laterality_audit_min_cases": 20
+        }
+      },
+      "manifest_sha256": "1223686af72c9906e2936d67e54e25023696f749e48119727d3e7e513f342c22",
+      "slot_metadata_sha256": "cf35f77627b7fa83cd79ccd26d353b795a62862606ac2a054e07a77520609ad9",
+      "checkpoint": "models\\slot_model_best.pth",
+      "epochs_executed": 12,
+      "learning_rate": 0.001,
+      "best_validation_score": 0.6835978835978835
+    },
+    "segmentation": {
+      "code_fingerprint_sha256": "fbeeea88ecdab0869ebb06af2a1d993a87b8ff31692b5b052dc0cd6c043fd84e",
+      "torch_version": "2.13.0+cu126",
+      "cuda_available": true,
+      "cuda_version": "12.6",
+      "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "config": {
+        "project": {
+          "name": "Reliable and Grounded Vision-Language Analysis for Structured Brain Tumor MRI Report Generation",
+          "seed": 42
+        },
+        "data": {
+          "raw_dir": "data/raw",
+          "manifest_path": "data/manifest/manifest.csv",
+          "skipped_path": "data/manifest/skipped_incomplete_cases.csv",
+          "metadata_path": "data/manifest/slot_metadata.json",
+          "split_seed": 42,
+          "train_ratio": 0.7,
+          "val_ratio": 0.15,
+          "test_ratio": 0.15,
+          "target_shape": [
+            128,
+            128,
+            128
+          ],
+          "intensity_clip": [
+            -3.0,
+            3.0
+          ],
+          "extent_quantiles": [
+            0.333333,
+            0.666667
+          ],
+          "report_suffix": "_flair_text.txt"
+        },
+        "slot_model": {
+          "backbone_channels": 16,
+          "dropout": 0.2,
+          "epochs": 12,
+          "batch_size": 2,
+          "learning_rate": 0.001,
+          "weight_decay": 0.0001,
+          "num_workers": 0,
+          "use_amp": true,
+          "use_class_weights": true
+        },
+        "segmentation": {
+          "epochs": 40,
+          "batch_size": 1,
+          "learning_rate": 0.0002,
+          "min_learning_rate": 2e-05,
+          "weight_decay": 1e-05,
+          "num_workers": 0,
+          "use_amp": true,
+          "channels": [
+            8,
+            16,
+            32,
+            64
+          ],
+          "strides": [
+            2,
+            2,
+            2
+          ],
+          "num_res_units": 2,
+          "augment_probability": 0.65,
+          "flip_probability": 0.25,
+          "max_rotation_degrees": 10.0,
+          "intensity_scale": 0.1,
+          "max_grad_norm": 1.0,
+          "scheduler_factor": 0.5,
+          "scheduler_patience": 4,
+          "min_epochs": 20,
+          "early_stopping_patience": 10,
+          "early_stopping_min_delta": 0.0001
+        },
+        "vlm": {
+          "llm_model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+          "num_visual_tokens": 8,
+          "vision_channels": [
+            16,
+            32,
+            64
+          ],
+          "lora_rank": 16,
+          "lora_alpha": 32,
+          "lora_dropout": 0.05,
+          "lora_target_modules": [
+            "q_proj",
+            "v_proj"
+          ],
+          "gradient_checkpointing": true,
+          "max_prompt_length": 512,
+          "max_target_length": 220,
+          "max_new_tokens": 160,
+          "temperature": 0.0,
+          "do_sample": false,
+          "top_p": 0.92,
+          "repetition_penalty": 1.0,
+          "no_repeat_ngram_size": 0,
+          "grounded_target_reference_chars": 220,
+          "epochs": 8,
+          "batch_size": 1,
+          "lora_learning_rate": 0.0001,
+          "projector_learning_rate": 5e-05,
+          "gradient_accumulation_steps": 4,
+          "use_amp": true,
+          "max_grad_norm": 1.0,
+          "weight_decay": 0.01,
+          "max_train_batches": null,
+          "validation_every_epoch": true
+        },
+        "rag": {
+          "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+          "embedding_device": "cpu",
+          "top_k": 3,
+          "index_path": "data/rag_index",
+          "add_slot_signature": true,
+          "query_mode": "structured_slots",
+          "context_chars_per_case": 120,
+          "max_context_chars": 240,
+          "candidate_gate": true,
+          "max_style_cues": 3,
+          "candidate_min_raw_conditioning": 0.9,
+          "max_raw_conditioning_drop_vs_base": 0.02,
+          "rag_aware_epochs": 1,
+          "rag_aware_fraction": 0.5,
+          "rag_aware_lora_learning_rate": 2e-05,
+          "rag_aware_projector_learning_rate": 1e-05
+        },
+        "paths": {
+          "models_dir": "models",
+          "outputs_dir": "outputs",
+          "results_dir": "results",
+          "figures_dir": "results/figures",
+          "experiments_dir": "experiments"
+        },
+        "validation": {
+          "laterality_audit_min_agreement": 0.7,
+          "laterality_audit_min_cases": 20
+        }
+      },
+      "manifest_sha256": "1223686af72c9906e2936d67e54e25023696f749e48119727d3e7e513f342c22",
+      "slot_metadata_sha256": "cf35f77627b7fa83cd79ccd26d353b795a62862606ac2a054e07a77520609ad9",
+      "checkpoint": "models\\segmentation_unet_best.pth",
+      "epochs_requested": 40,
+      "epochs_executed": 40,
+      "best_epoch": 37,
+      "learning_rate": 0.0002,
+      "best_validation_mean_dice": 0.5911280199976666,
+      "scheduler": "ReduceLROnPlateau(validation WT/TC/ET Dice)",
+      "early_stopping_patience": 10
+    },
+    "vlm": {
+      "code_fingerprint_sha256": "fbeeea88ecdab0869ebb06af2a1d993a87b8ff31692b5b052dc0cd6c043fd84e",
+      "torch_version": "2.13.0+cu126",
+      "cuda_available": true,
+      "cuda_version": "12.6",
+      "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "config": {
+        "project": {
+          "name": "Reliable and Grounded Vision-Language Analysis for Structured Brain Tumor MRI Report Generation",
+          "seed": 42
+        },
+        "data": {
+          "raw_dir": "data/raw",
+          "manifest_path": "data/manifest/manifest.csv",
+          "skipped_path": "data/manifest/skipped_incomplete_cases.csv",
+          "metadata_path": "data/manifest/slot_metadata.json",
+          "split_seed": 42,
+          "train_ratio": 0.7,
+          "val_ratio": 0.15,
+          "test_ratio": 0.15,
+          "target_shape": [
+            128,
+            128,
+            128
+          ],
+          "intensity_clip": [
+            -3.0,
+            3.0
+          ],
+          "extent_quantiles": [
+            0.333333,
+            0.666667
+          ],
+          "report_suffix": "_flair_text.txt"
+        },
+        "slot_model": {
+          "backbone_channels": 16,
+          "dropout": 0.2,
+          "epochs": 12,
+          "batch_size": 2,
+          "learning_rate": 0.001,
+          "weight_decay": 0.0001,
+          "num_workers": 0,
+          "use_amp": true,
+          "use_class_weights": true
+        },
+        "segmentation": {
+          "epochs": 40,
+          "batch_size": 1,
+          "learning_rate": 0.0002,
+          "min_learning_rate": 2e-05,
+          "weight_decay": 1e-05,
+          "num_workers": 0,
+          "use_amp": true,
+          "channels": [
+            8,
+            16,
+            32,
+            64
+          ],
+          "strides": [
+            2,
+            2,
+            2
+          ],
+          "num_res_units": 2,
+          "augment_probability": 0.65,
+          "flip_probability": 0.25,
+          "max_rotation_degrees": 10.0,
+          "intensity_scale": 0.1,
+          "max_grad_norm": 1.0,
+          "scheduler_factor": 0.5,
+          "scheduler_patience": 4,
+          "min_epochs": 20,
+          "early_stopping_patience": 10,
+          "early_stopping_min_delta": 0.0001
+        },
+        "vlm": {
+          "llm_model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+          "num_visual_tokens": 8,
+          "vision_channels": [
+            16,
+            32,
+            64
+          ],
+          "lora_rank": 16,
+          "lora_alpha": 32,
+          "lora_dropout": 0.05,
+          "lora_target_modules": [
+            "q_proj",
+            "v_proj"
+          ],
+          "gradient_checkpointing": true,
+          "max_prompt_length": 512,
+          "max_target_length": 220,
+          "max_new_tokens": 160,
+          "temperature": 0.0,
+          "do_sample": false,
+          "top_p": 0.92,
+          "repetition_penalty": 1.0,
+          "no_repeat_ngram_size": 0,
+          "grounded_target_reference_chars": 220,
+          "epochs": 8,
+          "batch_size": 1,
+          "lora_learning_rate": 0.0001,
+          "projector_learning_rate": 5e-05,
+          "gradient_accumulation_steps": 4,
+          "use_amp": true,
+          "max_grad_norm": 1.0,
+          "weight_decay": 0.01,
+          "max_train_batches": null,
+          "validation_every_epoch": true
+        },
+        "rag": {
+          "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+          "embedding_device": "cpu",
+          "top_k": 3,
+          "index_path": "data/rag_index",
+          "add_slot_signature": true,
+          "query_mode": "structured_slots",
+          "context_chars_per_case": 120,
+          "max_context_chars": 240,
+          "candidate_gate": true,
+          "max_style_cues": 3,
+          "candidate_min_raw_conditioning": 0.9,
+          "max_raw_conditioning_drop_vs_base": 0.02,
+          "rag_aware_epochs": 1,
+          "rag_aware_fraction": 0.5,
+          "rag_aware_lora_learning_rate": 2e-05,
+          "rag_aware_projector_learning_rate": 1e-05
+        },
+        "paths": {
+          "models_dir": "models",
+          "outputs_dir": "outputs",
+          "results_dir": "results",
+          "figures_dir": "results/figures",
+          "experiments_dir": "experiments"
+        },
+        "validation": {
+          "laterality_audit_min_agreement": 0.7,
+          "laterality_audit_min_cases": 20
+        }
+      },
+      "manifest_sha256": "1223686af72c9906e2936d67e54e25023696f749e48119727d3e7e513f342c22",
+      "slot_metadata_sha256": "cf35f77627b7fa83cd79ccd26d353b795a62862606ac2a054e07a77520609ad9",
+      "checkpoint": "models\\hybrid3dvlm_trainable.pth",
+      "base_epochs_executed": 8,
+      "best_epoch": 8,
+      "best_validation_loss": 0.014045993200587956,
+      "rag_aware_epochs": 1,
+      "rag_aware_validation_loss": 0.013502024046399377,
+      "conditioning": "frozen slot-CNN predictions from FLAIR MRI for train/validation/test consistency",
+      "training_target": "explicit five-slot anchor plus at most one patient-independent generic MRI signal descriptor",
+      "rag_training_context": "patient-independent style cues only; mixed base/RAG prompt exposure; self-retrieval excluded",
+      "prompt_supervision": "visual tokens and all prompt/RAG tokens masked with -100; only assistant report target supervised",
+      "test_split_used_during_training": false
+    },
+    "rag": {
+      "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+      "embedding_device": "cpu",
+      "top_k": 3,
+      "query_mode": "structured_slots",
+      "context_type": "patient-independent style cues only + structured slot signature",
+      "raw_reports_inserted_into_prompt": false,
+      "indexed_split": "train",
+      "n_indexed_cases": 257,
+      "indexed_case_ids": [
+        "BraTS20_Training_001",
+        "BraTS20_Training_003",
+        "BraTS20_Training_004",
+        "BraTS20_Training_005",
+        "BraTS20_Training_008",
+        "BraTS20_Training_009",
+        "BraTS20_Training_010",
+        "BraTS20_Training_012",
+        "BraTS20_Training_013",
+        "BraTS20_Training_019",
+        "BraTS20_Training_020",
+        "BraTS20_Training_021",
+        "BraTS20_Training_022",
+        "BraTS20_Training_025",
+        "BraTS20_Training_026",
+        "BraTS20_Training_027",
+        "BraTS20_Training_028",
+        "BraTS20_Training_029",
+        "BraTS20_Training_030",
+        "BraTS20_Training_031",
+        "BraTS20_Training_033",
+        "BraTS20_Training_034",
+        "BraTS20_Training_038",
+        "BraTS20_Training_039",
+        "BraTS20_Training_041",
+        "BraTS20_Training_045",
+        "BraTS20_Training_046",
+        "BraTS20_Training_047",
+        "BraTS20_Training_048",
+        "BraTS20_Training_049",
+        "BraTS20_Training_051",
+        "BraTS20_Training_052",
+        "BraTS20_Training_053",
+        "BraTS20_Training_054",
+        "BraTS20_Training_055",
+        "BraTS20_Training_056",
+        "BraTS20_Training_057",
+        "BraTS20_Training_059",
+        "BraTS20_Training_060",
+        "BraTS20_Training_061",
+        "BraTS20_Training_062",
+        "BraTS20_Training_063",
+        "BraTS20_Training_065",
+        "BraTS20_Training_067",
+        "BraTS20_Training_068",
+        "BraTS20_Training_069",
+        "BraTS20_Training_071",
+        "BraTS20_Training_073",
+        "BraTS20_Training_074",
+        "BraTS20_Training_076",
+        "BraTS20_Training_078",
+        "BraTS20_Training_080",
+        "BraTS20_Training_081",
+        "BraTS20_Training_082",
+        "BraTS20_Training_083",
+        "BraTS20_Training_084",
+        "BraTS20_Training_085",
+        "BraTS20_Training_087",
+        "BraTS20_Training_089",
+        "BraTS20_Training_090",
+        "BraTS20_Training_092",
+        "BraTS20_Training_093",
+        "BraTS20_Training_094",
+        "BraTS20_Training_095",
+        "BraTS20_Training_096",
+        "BraTS20_Training_097",
+        "BraTS20_Training_099",
+        "BraTS20_Training_101",
+        "BraTS20_Training_102",
+        "BraTS20_Training_105",
+        "BraTS20_Training_107",
+        "BraTS20_Training_108",
+        "BraTS20_Training_109",
+        "BraTS20_Training_113",
+        "BraTS20_Training_116",
+        "BraTS20_Training_119",
+        "BraTS20_Training_120",
+        "BraTS20_Training_121",
+        "BraTS20_Training_122",
+        "BraTS20_Training_125",
+        "BraTS20_Training_127",
+        "BraTS20_Training_128",
+        "BraTS20_Training_129",
+        "BraTS20_Training_131",
+        "BraTS20_Training_132",
+        "BraTS20_Training_133",
+        "BraTS20_Training_134",
+        "BraTS20_Training_135",
+        "BraTS20_Training_136",
+        "BraTS20_Training_139",
+        "BraTS20_Training_141",
+        "BraTS20_Training_144",
+        "BraTS20_Training_145",
+        "BraTS20_Training_146",
+        "BraTS20_Training_147",
+        "BraTS20_Training_148",
+        "BraTS20_Training_149",
+        "BraTS20_Training_150",
+        "BraTS20_Training_151",
+        "BraTS20_Training_152",
+        "BraTS20_Training_153",
+        "BraTS20_Training_154",
+        "BraTS20_Training_155",
+        "BraTS20_Training_156",
+        "BraTS20_Training_157",
+        "BraTS20_Training_159",
+        "BraTS20_Training_160",
+        "BraTS20_Training_162",
+        "BraTS20_Training_163",
+        "BraTS20_Training_165",
+        "BraTS20_Training_166",
+        "BraTS20_Training_167",
+        "BraTS20_Training_169",
+        "BraTS20_Training_170",
+        "BraTS20_Training_172",
+        "BraTS20_Training_173",
+        "BraTS20_Training_174",
+        "BraTS20_Training_175",
+        "BraTS20_Training_177",
+        "BraTS20_Training_179",
+        "BraTS20_Training_180",
+        "BraTS20_Training_181",
+        "BraTS20_Training_182",
+        "BraTS20_Training_184",
+        "BraTS20_Training_185",
+        "BraTS20_Training_186",
+        "BraTS20_Training_187",
+        "BraTS20_Training_192",
+        "BraTS20_Training_193",
+        "BraTS20_Training_194",
+        "BraTS20_Training_197",
+        "BraTS20_Training_198",
+        "BraTS20_Training_199",
+        "BraTS20_Training_201",
+        "BraTS20_Training_202",
+        "BraTS20_Training_203",
+        "BraTS20_Training_204",
+        "BraTS20_Training_205",
+        "BraTS20_Training_206",
+        "BraTS20_Training_208",
+        "BraTS20_Training_210",
+        "BraTS20_Training_211",
+        "BraTS20_Training_212",
+        "BraTS20_Training_214",
+        "BraTS20_Training_215",
+        "BraTS20_Training_216",
+        "BraTS20_Training_217",
+        "BraTS20_Training_218",
+        "BraTS20_Training_219",
+        "BraTS20_Training_220",
+        "BraTS20_Training_223",
+        "BraTS20_Training_226",
+        "BraTS20_Training_227",
+        "BraTS20_Training_228",
+        "BraTS20_Training_229",
+        "BraTS20_Training_230",
+        "BraTS20_Training_231",
+        "BraTS20_Training_232",
+        "BraTS20_Training_233",
+        "BraTS20_Training_234",
+        "BraTS20_Training_235",
+        "BraTS20_Training_236",
+        "BraTS20_Training_237",
+        "BraTS20_Training_239",
+        "BraTS20_Training_240",
+        "BraTS20_Training_242",
+        "BraTS20_Training_243",
+        "BraTS20_Training_244",
+        "BraTS20_Training_245",
+        "BraTS20_Training_246",
+        "BraTS20_Training_247",
+        "BraTS20_Training_248",
+        "BraTS20_Training_249",
+        "BraTS20_Training_250",
+        "BraTS20_Training_251",
+        "BraTS20_Training_252",
+        "BraTS20_Training_253",
+        "BraTS20_Training_254",
+        "BraTS20_Training_255",
+        "BraTS20_Training_256",
+        "BraTS20_Training_257",
+        "BraTS20_Training_258",
+        "BraTS20_Training_259",
+        "BraTS20_Training_260",
+        "BraTS20_Training_262",
+        "BraTS20_Training_263",
+        "BraTS20_Training_264",
+        "BraTS20_Training_265",
+        "BraTS20_Training_266",
+        "BraTS20_Training_267",
+        "BraTS20_Training_269",
+        "BraTS20_Training_270",
+        "BraTS20_Training_271",
+        "BraTS20_Training_272",
+        "BraTS20_Training_274",
+        "BraTS20_Training_277",
+        "BraTS20_Training_279",
+        "BraTS20_Training_281",
+        "BraTS20_Training_282",
+        "BraTS20_Training_283",
+        "BraTS20_Training_285",
+        "BraTS20_Training_286",
+        "BraTS20_Training_289",
+        "BraTS20_Training_290",
+        "BraTS20_Training_293",
+        "BraTS20_Training_294",
+        "BraTS20_Training_295",
+        "BraTS20_Training_299",
+        "BraTS20_Training_300",
+        "BraTS20_Training_302",
+        "BraTS20_Training_303",
+        "BraTS20_Training_305",
+        "BraTS20_Training_306",
+        "BraTS20_Training_307",
+        "BraTS20_Training_308",
+        "BraTS20_Training_309",
+        "BraTS20_Training_311",
+        "BraTS20_Training_312",
+        "BraTS20_Training_313",
+        "BraTS20_Training_316",
+        "BraTS20_Training_319",
+        "BraTS20_Training_322",
+        "BraTS20_Training_323",
+        "BraTS20_Training_324",
+        "BraTS20_Training_325",
+        "BraTS20_Training_326",
+        "BraTS20_Training_327",
+        "BraTS20_Training_328",
+        "BraTS20_Training_330",
+        "BraTS20_Training_331",
+        "BraTS20_Training_332",
+        "BraTS20_Training_333",
+        "BraTS20_Training_335",
+        "BraTS20_Training_337",
+        "BraTS20_Training_338",
+        "BraTS20_Training_339",
+        "BraTS20_Training_340",
+        "BraTS20_Training_341",
+        "BraTS20_Training_342",
+        "BraTS20_Training_345",
+        "BraTS20_Training_346",
+        "BraTS20_Training_348",
+        "BraTS20_Training_350",
+        "BraTS20_Training_351",
+        "BraTS20_Training_352",
+        "BraTS20_Training_353",
+        "BraTS20_Training_354",
+        "BraTS20_Training_358",
+        "BraTS20_Training_359",
+        "BraTS20_Training_362",
+        "BraTS20_Training_363",
+        "BraTS20_Training_364",
+        "BraTS20_Training_365",
+        "BraTS20_Training_366",
+        "BraTS20_Training_367",
+        "BraTS20_Training_368",
+        "BraTS20_Training_369"
+      ],
+      "manifest_sha256": "1223686af72c9906e2936d67e54e25023696f749e48119727d3e7e513f342c22",
+      "integrity": "assert_rag_train_only passed before persistence"
+    }
+  },
+  "slot_prediction": {
+    "cnn": {
+      "n_cases": 56,
+      "per_slot": {
+        "edema": {
+          "accuracy": 1.0,
+          "balanced_accuracy": null,
+          "macro_f1": 0.5,
+          "support": {
+            "0": 0,
+            "1": 56
+          },
+          "labels": [
+            0,
+            1
+          ],
+          "confusion_matrix": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              56
+            ]
+          ],
+          "per_class_precision": [
+            0.0,
+            1.0
+          ],
+          "per_class_recall": [
+            0.0,
+            1.0
+          ],
+          "per_class_f1": [
+            0.0,
+            1.0
+          ],
+          "per_class_support": [
+            0,
+            56
+          ],
+          "informative": false
+        },
+        "enhancing": {
+          "accuracy": 0.9285714285714286,
+          "balanced_accuracy": 0.5,
+          "macro_f1": 0.48148148148148145,
+          "support": {
+            "0": 4,
+            "1": 52
+          },
+          "labels": [
+            0,
+            1
+          ],
+          "confusion_matrix": [
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              52
+            ]
+          ],
+          "per_class_precision": [
+            0.0,
+            0.9285714285714286
+          ],
+          "per_class_recall": [
+            0.0,
+            1.0
+          ],
+          "per_class_f1": [
+            0.0,
+            0.9629629629629629
+          ],
+          "per_class_support": [
+            4,
+            52
+          ],
+          "informative": true
+        },
+        "necrotic": {
+          "accuracy": 1.0,
+          "balanced_accuracy": null,
+          "macro_f1": 0.5,
+          "support": {
+            "0": 0,
+            "1": 56
+          },
+          "labels": [
+            0,
+            1
+          ],
+          "confusion_matrix": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              56
+            ]
+          ],
+          "per_class_precision": [
+            0.0,
+            1.0
+          ],
+          "per_class_recall": [
+            0.0,
+            1.0
+          ],
+          "per_class_f1": [
+            0.0,
+            1.0
+          ],
+          "per_class_support": [
+            0,
+            56
+          ],
+          "informative": false
+        },
+        "hemisphere": {
+          "accuracy": 0.9107142857142857,
+          "balanced_accuracy": 0.9107142857142857,
+          "macro_f1": 0.9099967855994857,
+          "support": {
+            "0": 28,
+            "1": 28
+          },
+          "labels": [
+            0,
+            1
+          ],
+          "confusion_matrix": [
+            [
+              28,
+              0
+            ],
+            [
+              5,
+              23
+            ]
+          ],
+          "per_class_precision": [
+            0.8484848484848485,
+            1.0
+          ],
+          "per_class_recall": [
+            1.0,
+            0.8214285714285714
+          ],
+          "per_class_f1": [
+            0.9180327868852459,
+            0.9019607843137255
+          ],
+          "per_class_support": [
+            28,
+            28
+          ],
+          "informative": true
+        },
+        "extent": {
+          "accuracy": 0.7142857142857143,
+          "balanced_accuracy": 0.6537336932073775,
+          "macro_f1": 0.6489898989898989,
+          "support": {
+            "0": 24,
+            "1": 13,
+            "2": 19
+          },
+          "labels": [
+            0,
+            1,
+            2
+          ],
+          "confusion_matrix": [
+            [
+              22,
+              0,
+              2
+            ],
+            [
+              2,
+              4,
+              7
+            ],
+            [
+              0,
+              5,
+              14
+            ]
+          ],
+          "per_class_precision": [
+            0.9166666666666666,
+            0.4444444444444444,
+            0.6086956521739131
+          ],
+          "per_class_recall": [
+            0.9166666666666666,
+            0.3076923076923077,
+            0.7368421052631579
+          ],
+          "per_class_f1": [
+            0.9166666666666666,
+            0.36363636363636365,
+            0.6666666666666666
+          ],
+          "per_class_support": [
+            24,
+            13,
+            19
+          ],
+          "informative": true
+        }
+      },
+      "micro_accuracy_all_slots": 0.9107142857142857,
+      "macro_balanced_accuracy_informative_slots": 0.688149326307221,
+      "macro_f1_informative_slots": 0.6801560553569553
+    },
+    "majority_classes_learned_from_training_split": {
+      "edema": 1,
+      "enhancing": 1,
+      "necrotic": 1,
+      "hemisphere": 0,
+      "extent": 2
+    },
+    "majority_baseline": {
+      "n_cases": 56,
+      "per_slot": {
+        "edema": {
+          "accuracy": 1.0,
+          "balanced_accuracy": null,
+          "macro_f1": 0.5,
+          "support": {
+            "0": 0,
+            "1": 56
+          },
+          "labels": [
+            0,
+            1
+          ],
+          "confusion_matrix": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              56
+            ]
+          ],
+          "per_class_precision": [
+            0.0,
+            1.0
+          ],
+          "per_class_recall": [
+            0.0,
+            1.0
+          ],
+          "per_class_f1": [
+            0.0,
+            1.0
+          ],
+          "per_class_support": [
+            0,
+            56
+          ],
+          "informative": false
+        },
+        "enhancing": {
+          "accuracy": 0.9285714285714286,
+          "balanced_accuracy": 0.5,
+          "macro_f1": 0.48148148148148145,
+          "support": {
+            "0": 4,
+            "1": 52
+          },
+          "labels": [
+            0,
+            1
+          ],
+          "confusion_matrix": [
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              52
+            ]
+          ],
+          "per_class_precision": [
+            0.0,
+            0.9285714285714286
+          ],
+          "per_class_recall": [
+            0.0,
+            1.0
+          ],
+          "per_class_f1": [
+            0.0,
+            0.9629629629629629
+          ],
+          "per_class_support": [
+            4,
+            52
+          ],
+          "informative": true
+        },
+        "necrotic": {
+          "accuracy": 1.0,
+          "balanced_accuracy": null,
+          "macro_f1": 0.5,
+          "support": {
+            "0": 0,
+            "1": 56
+          },
+          "labels": [
+            0,
+            1
+          ],
+          "confusion_matrix": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              56
+            ]
+          ],
+          "per_class_precision": [
+            0.0,
+            1.0
+          ],
+          "per_class_recall": [
+            0.0,
+            1.0
+          ],
+          "per_class_f1": [
+            0.0,
+            1.0
+          ],
+          "per_class_support": [
+            0,
+            56
+          ],
+          "informative": false
+        },
+        "hemisphere": {
+          "accuracy": 0.5,
+          "balanced_accuracy": 0.5,
+          "macro_f1": 0.3333333333333333,
+          "support": {
+            "0": 28,
+            "1": 28
+          },
+          "labels": [
+            0,
+            1
+          ],
+          "confusion_matrix": [
+            [
+              28,
+              0
+            ],
+            [
+              28,
+              0
+            ]
+          ],
+          "per_class_precision": [
+            0.5,
+            0.0
+          ],
+          "per_class_recall": [
+            1.0,
+            0.0
+          ],
+          "per_class_f1": [
+            0.6666666666666666,
+            0.0
+          ],
+          "per_class_support": [
+            28,
+            28
+          ],
+          "informative": true
+        },
+        "extent": {
+          "accuracy": 0.3392857142857143,
+          "balanced_accuracy": 0.3333333333333333,
+          "macro_f1": 0.1688888888888889,
+          "support": {
+            "0": 24,
+            "1": 13,
+            "2": 19
+          },
+          "labels": [
+            0,
+            1,
+            2
+          ],
+          "confusion_matrix": [
+            [
+              0,
+              0,
+              24
+            ],
+            [
+              0,
+              0,
+              13
+            ],
+            [
+              0,
+              0,
+              19
+            ]
+          ],
+          "per_class_precision": [
+            0.0,
+            0.0,
+            0.3392857142857143
+          ],
+          "per_class_recall": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "per_class_f1": [
+            0.0,
+            0.0,
+            0.5066666666666667
+          ],
+          "per_class_support": [
+            24,
+            13,
+            19
+          ],
+          "informative": true
+        }
+      },
+      "micro_accuracy_all_slots": 0.7535714285714286,
+      "macro_balanced_accuracy_informative_slots": 0.4444444444444444,
+      "macro_f1_informative_slots": 0.3279012345679012
+    },
+    "cnn_minus_majority_micro_accuracy": 0.15714285714285714,
+    "predictions": [
+      {
+        "case_id": "BraTS20_Training_007",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_015",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_016",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_017",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 1
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 1
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_023",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_024",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 1
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 1
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_032",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_035",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 1
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_036",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_037",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_042",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 1
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 1
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_044",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_050",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 1
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_058",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 1
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_077",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_098",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_103",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_106",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 1
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_110",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_111",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_114",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 1
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_130",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 1
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_137",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_138",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_140",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 1
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_142",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_161",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_164",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_176",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 1
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_183",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_191",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_195",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_196",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 1
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_209",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_213",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_238",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 1
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_241",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_268",
+        "target": {
+          "edema": 1,
+          "enhancing": 0,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_273",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 1
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_276",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_280",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_287",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_288",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 1
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_291",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_297",
+        "target": {
+          "edema": 1,
+          "enhancing": 0,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 1
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 1
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_301",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 1
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_304",
+        "target": {
+          "edema": 1,
+          "enhancing": 0,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_314",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_315",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_317",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_318",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_321",
+        "target": {
+          "edema": 1,
+          "enhancing": 0,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_334",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_343",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_356",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 0
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_360",
+        "target": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 1
+        },
+        "prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 1,
+          "extent": 2
+        },
+        "majority_prediction": {
+          "edema": 1,
+          "enhancing": 1,
+          "necrotic": 1,
+          "hemisphere": 0,
+          "extent": 2
+        }
+      }
+    ]
+  },
+  "majority_baseline": {
+    "n_cases": 56,
+    "per_slot": {
+      "edema": {
+        "accuracy": 1.0,
+        "balanced_accuracy": null,
+        "macro_f1": 0.5,
+        "support": {
+          "0": 0,
+          "1": 56
+        },
+        "labels": [
+          0,
+          1
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            56
+          ]
+        ],
+        "per_class_precision": [
+          0.0,
+          1.0
+        ],
+        "per_class_recall": [
+          0.0,
+          1.0
+        ],
+        "per_class_f1": [
+          0.0,
+          1.0
+        ],
+        "per_class_support": [
+          0,
+          56
+        ],
+        "informative": false
+      },
+      "enhancing": {
+        "accuracy": 0.9285714285714286,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.48148148148148145,
+        "support": {
+          "0": 4,
+          "1": 52
+        },
+        "labels": [
+          0,
+          1
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            52
+          ]
+        ],
+        "per_class_precision": [
+          0.0,
+          0.9285714285714286
+        ],
+        "per_class_recall": [
+          0.0,
+          1.0
+        ],
+        "per_class_f1": [
+          0.0,
+          0.9629629629629629
+        ],
+        "per_class_support": [
+          4,
+          52
+        ],
+        "informative": true
+      },
+      "necrotic": {
+        "accuracy": 1.0,
+        "balanced_accuracy": null,
+        "macro_f1": 0.5,
+        "support": {
+          "0": 0,
+          "1": 56
+        },
+        "labels": [
+          0,
+          1
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            56
+          ]
+        ],
+        "per_class_precision": [
+          0.0,
+          1.0
+        ],
+        "per_class_recall": [
+          0.0,
+          1.0
+        ],
+        "per_class_f1": [
+          0.0,
+          1.0
+        ],
+        "per_class_support": [
+          0,
+          56
+        ],
+        "informative": false
+      },
+      "hemisphere": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.3333333333333333,
+        "support": {
+          "0": 28,
+          "1": 28
+        },
+        "labels": [
+          0,
+          1
+        ],
+        "confusion_matrix": [
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            0
+          ]
+        ],
+        "per_class_precision": [
+          0.5,
+          0.0
+        ],
+        "per_class_recall": [
+          1.0,
+          0.0
+        ],
+        "per_class_f1": [
+          0.6666666666666666,
+          0.0
+        ],
+        "per_class_support": [
+          28,
+          28
+        ],
+        "informative": true
+      },
+      "extent": {
+        "accuracy": 0.3392857142857143,
+        "balanced_accuracy": 0.3333333333333333,
+        "macro_f1": 0.1688888888888889,
+        "support": {
+          "0": 24,
+          "1": 13,
+          "2": 19
+        },
+        "labels": [
+          0,
+          1,
+          2
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            24
+          ],
+          [
+            0,
+            0,
+            13
+          ],
+          [
+            0,
+            0,
+            19
+          ]
+        ],
+        "per_class_precision": [
+          0.0,
+          0.0,
+          0.3392857142857143
+        ],
+        "per_class_recall": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "per_class_f1": [
+          0.0,
+          0.0,
+          0.5066666666666667
+        ],
+        "per_class_support": [
+          24,
+          13,
+          19
+        ],
+        "informative": true
+      }
+    },
+    "micro_accuracy_all_slots": 0.7535714285714286,
+    "macro_balanced_accuracy_informative_slots": 0.4444444444444444,
+    "macro_f1_informative_slots": 0.3279012345679012
+  },
+  "segmentation": {
+    "model": "MONAI 3D U-Net",
+    "training_input_space": "FLAIR resized to 128x128x128",
+    "evaluation_space": "prediction nearest-neighbour mapped to canonical original BraTS grid; metrics against original held-out mask",
+    "hd95_definition": "MONAI symmetric 95th-percentile Hausdorff distance using original canonical NIfTI physical voxel spacing; units=mm",
+    "n_test_cases": 56,
+    "summary": {
+      "whole_tumor": {
+        "dice": 0.8410779605687992,
+        "dice_std": 0.08968860535161707,
+        "dice_n": 56,
+        "iou": 0.7348475389104715,
+        "iou_std": 0.12049950062449749,
+        "iou_n": 56,
+        "precision": 0.8536251003903254,
+        "precision_std": 0.09727721752171453,
+        "precision_n": 56,
+        "recall": 0.8470976774747117,
+        "recall_std": 0.12531609286464407,
+        "recall_n": 56,
+        "hd95": 12.036053121089935,
+        "hd95_std": 15.794053618475886,
+        "hd95_n": 56,
+        "hd95_undefined_cases": 0
+      },
+      "tumor_core": {
+        "dice": 0.588814629289241,
+        "dice_std": 0.22588498576159194,
+        "dice_n": 56,
+        "iou": 0.4481817621212345,
+        "iou_std": 0.19915841580998742,
+        "iou_n": 56,
+        "precision": 0.6328002302208786,
+        "precision_std": 0.2705592066027602,
+        "precision_n": 56,
+        "recall": 0.663735327818092,
+        "recall_std": 0.26635675718955726,
+        "recall_n": 56,
+        "hd95": 16.03439376609666,
+        "hd95_std": 18.5517450643828,
+        "hd95_n": 56,
+        "hd95_undefined_cases": 0
+      },
+      "enhancing_tumor": {
+        "dice": 0.27301069466715705,
+        "dice_std": 0.1667548096545274,
+        "dice_n": 56,
+        "iou": 0.16851438650247388,
+        "iou_std": 0.11040158863142117,
+        "iou_n": 56,
+        "precision": 0.28753033353886515,
+        "precision_std": 0.2012064774695331,
+        "precision_n": 56,
+        "recall": 0.4481083153965178,
+        "recall_std": 0.22283520139092294,
+        "recall_n": 56,
+        "hd95": 15.475708016982445,
+        "hd95_std": 9.852313342537851,
+        "hd95_n": 52,
+        "hd95_undefined_cases": 4
+      },
+      "edema": {
+        "dice": 0.583171449697912,
+        "dice_std": 0.15230623330934584,
+        "dice_n": 56,
+        "iou": 0.4267042891201886,
+        "iou_std": 0.1442270437626305,
+        "iou_n": 56,
+        "precision": 0.6072596881261519,
+        "precision_std": 0.21507417822575256,
+        "precision_n": 56,
+        "recall": 0.6125273071334237,
+        "recall_std": 0.14514558698204924,
+        "recall_n": 56,
+        "hd95": 12.019997996943337,
+        "hd95_std": 10.834615342039049,
+        "hd95_n": 56,
+        "hd95_undefined_cases": 0
+      },
+      "necrotic_non_enhancing": {
+        "dice": 0.35937998820279804,
+        "dice_std": 0.22300920937528354,
+        "dice_n": 56,
+        "iou": 0.24163322468791934,
+        "iou_std": 0.1709432857003966,
+        "iou_n": 56,
+        "precision": 0.4810852774536055,
+        "precision_std": 0.3425559473170931,
+        "precision_n": 56,
+        "recall": 0.3839528533380817,
+        "recall_std": 0.2262468557732494,
+        "recall_n": 56,
+        "hd95": 17.855230873281304,
+        "hd95_std": 20.393274378794768,
+        "hd95_n": 55,
+        "hd95_undefined_cases": 1
+      }
+    },
+    "per_case": [
+      {
+        "case_id": "BraTS20_Training_007",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8472254415650642,
+            "iou": 0.7349446041863551,
+            "precision": 0.7858402132782938,
+            "recall": 0.9190133762445942,
+            "hd95": 4.242640495300293,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.588930434381203,
+            "iou": 0.4173645642501963,
+            "precision": 0.5269287956385263,
+            "recall": 0.6674688709846186,
+            "hd95": 10.677078247070312,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.3243492586490939,
+            "iou": 0.1935661475538776,
+            "precision": 0.2729591836734694,
+            "recall": 0.39957785354765385,
+            "hd95": 7.348469257354736,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6666872997941845,
+            "iou": 0.5000232126276695,
+            "precision": 0.6260826600011626,
+            "recall": 0.7129240443488334,
+            "hd95": 4.123105525970459,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.5545622688039458,
+            "iou": 0.3836638942205161,
+            "precision": 0.582200647249191,
+            "recall": 0.5294290759270159,
+            "hd95": 19.69770050048828,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_015",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8938752042607274,
+            "iou": 0.8081142450688042,
+            "precision": 0.8495481050610795,
+            "recall": 0.9430826821617566,
+            "hd95": 4.0,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.4356928575987745,
+            "iou": 0.27852129916761875,
+            "precision": 0.2813313989910647,
+            "recall": 0.9653787407365503,
+            "hd95": 21.354156494140625,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.1805841531304812,
+            "iou": 0.09925391902087351,
+            "precision": 0.10899884925201381,
+            "recall": 0.5261053099311264,
+            "hd95": 22.315914154052734,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6565071788338628,
+            "iou": 0.48865700544943863,
+            "precision": 0.7786746235160603,
+            "recall": 0.567475141715454,
+            "hd95": 7.8102498054504395,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.25777537379747323,
+            "iou": 0.14795759968066705,
+            "precision": 0.19386331938633194,
+            "recall": 0.38455331412103744,
+            "hd95": 15.620499610900879,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_016",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8612494050631955,
+            "iou": 0.7563108277550371,
+            "precision": 0.8288269293685703,
+            "recall": 0.8963117879690854,
+            "hd95": 7.0,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.8069466534840735,
+            "iou": 0.6763709735533617,
+            "precision": 0.7224167789109102,
+            "recall": 0.9138795579572562,
+            "hd95": 6.164413928985596,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.25138429710159627,
+            "iou": 0.14376188929615366,
+            "precision": 0.1708480370533745,
+            "recall": 0.47555828409178114,
+            "hd95": 9.0,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.757050826528116,
+            "iou": 0.6090762540301418,
+            "precision": 0.7594040315512708,
+            "recall": 0.7547121604515312,
+            "hd95": 6.164413928985596,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.42876408603625227,
+            "iou": 0.27288332848414315,
+            "precision": 0.5974646451777297,
+            "recall": 0.3343552814516417,
+            "hd95": 8.602325439453125,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_017",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8592649345381617,
+            "iou": 0.7532554758367838,
+            "precision": 0.7870169326409471,
+            "recall": 0.9461184223585224,
+            "hd95": 4.123105525970459,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.4837903347977579,
+            "iou": 0.3190787830344207,
+            "precision": 0.33531959574747344,
+            "recall": 0.86821178549582,
+            "hd95": 11.532562255859375,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.22256396659154182,
+            "iou": 0.12521630168864492,
+            "precision": 0.13763814645984324,
+            "recall": 0.5811409581833287,
+            "hd95": 11.704699516296387,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.7148340696842267,
+            "iou": 0.556219280967546,
+            "precision": 0.727803738317757,
+            "recall": 0.7023185542448719,
+            "hd95": 7.874007701873779,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.312065195786126,
+            "iou": 0.18487988695242583,
+            "precision": 0.30978689818468824,
+            "recall": 0.3143772527032439,
+            "hd95": 12.973029136657715,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_023",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8151523853520283,
+            "iou": 0.6879807793631056,
+            "precision": 0.8376914983704996,
+            "recall": 0.7937943779787958,
+            "hd95": 3.1622776985168457,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.7102424950195783,
+            "iou": 0.5506790945406125,
+            "precision": 0.8922160856057991,
+            "recall": 0.5899235421659249,
+            "hd95": 7.549834251403809,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.45258818140174073,
+            "iou": 0.29248075784487865,
+            "precision": 0.5104477611940299,
+            "recall": 0.4065100118862577,
+            "hd95": 6.4031243324279785,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6462661095745307,
+            "iou": 0.47739523561119807,
+            "precision": 0.6016215623972828,
+            "recall": 0.6980676328502415,
+            "hd95": 4.582575798034668,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.55413541776698,
+            "iou": 0.3832554061952075,
+            "precision": 0.9113968033356498,
+            "recall": 0.39808772196084385,
+            "hd95": 7.6157732009887695,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_024",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8390961892027411,
+            "iou": 0.7227956195840944,
+            "precision": 0.8382118147951038,
+            "recall": 0.8399824317399898,
+            "hd95": 4.242640495300293,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.564665752813287,
+            "iou": 0.3934036646307607,
+            "precision": 0.5169263993462908,
+            "recall": 0.6221199775217757,
+            "hd95": 17.6068172454834,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.38347834783478346,
+            "iou": 0.23722438070726817,
+            "precision": 0.3587172098940987,
+            "recall": 0.411911309728429,
+            "hd95": 16.401220321655273,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.595006137447754,
+            "iou": 0.4234937627178625,
+            "precision": 0.622029465750532,
+            "recall": 0.5702330429603157,
+            "hd95": 6.324555397033691,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.3992780349996076,
+            "iou": 0.24943621923718012,
+            "precision": 0.3372663396526581,
+            "recall": 0.48923076923076925,
+            "hd95": 46.290382385253906,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_032",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8592077735705517,
+            "iou": 0.7531676265535011,
+            "precision": 0.7928965759326037,
+            "recall": 0.937622641509434,
+            "hd95": 3.605551242828369,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.7510898393439625,
+            "iou": 0.6013962116774068,
+            "precision": 0.8013400117088402,
+            "recall": 0.7067699368904188,
+            "hd95": 8.558584213256836,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.4566682950659502,
+            "iou": 0.2958976956191441,
+            "precision": 0.4285321353259375,
+            "recall": 0.48875875771201505,
+            "hd95": 7.0,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.5273627866102101,
+            "iou": 0.35810774155048014,
+            "precision": 0.41349285893259835,
+            "recall": 0.7277839029768467,
+            "hd95": 5.0,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.5448795913403065,
+            "iou": 0.37445670344366433,
+            "precision": 0.7523510971786834,
+            "recall": 0.427100546587009,
+            "hd95": 7.3416266441345215,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_035",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8158939866012329,
+            "iou": 0.6890379555284525,
+            "precision": 0.8623906375881613,
+            "recall": 0.7741546659899765,
+            "hd95": 6.082762718200684,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.3683337205057578,
+            "iou": 0.22574084243496653,
+            "precision": 0.9204677392602422,
+            "recall": 0.23023149684699634,
+            "hd95": 36.619667053222656,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.29615696261141333,
+            "iou": 0.17381704541594484,
+            "precision": 0.4970856809792112,
+            "recall": 0.2109059434506636,
+            "hd95": 34.75629425048828,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.514020156774916,
+            "iou": 0.3459132767637794,
+            "precision": 0.39103470601264206,
+            "recall": 0.7498611428758127,
+            "hd95": 5.656854152679443,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.08416958381952548,
+            "iou": 0.04393373396134481,
+            "precision": 0.6133786848072562,
+            "recall": 0.04518499958239372,
+            "hd95": 42.35563659667969,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_036",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.781998562185478,
+            "iou": 0.6420341864198696,
+            "precision": 0.6817247430433693,
+            "recall": 0.9168577208361429,
+            "hd95": 53.96571350097656,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.5497719767259003,
+            "iou": 0.3790934721318586,
+            "precision": 0.5017941725276303,
+            "recall": 0.6078942792557817,
+            "hd95": 10.049875259399414,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.44945832214164205,
+            "iou": 0.2898718096777919,
+            "precision": 0.4181242711977345,
+            "recall": 0.48586914440572976,
+            "hd95": 9.219544410705566,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.455456317722265,
+            "iou": 0.2948808265821299,
+            "precision": 0.3870396054862074,
+            "recall": 0.5532547637405001,
+            "hd95": 9.04416275024414,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.19625564880568108,
+            "iou": 0.10880458124552612,
+            "precision": 0.15767634854771784,
+            "recall": 0.25982905982905985,
+            "hd95": 8.66025447845459,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_037",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8799835373777636,
+            "iou": 0.7856880382967799,
+            "precision": 0.9417855332705815,
+            "recall": 0.8257932078027205,
+            "hd95": 5.099019527435303,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.44364411932535713,
+            "iou": 0.2850531326633649,
+            "precision": 0.2894017427811272,
+            "recall": 0.9499258903176702,
+            "hd95": 23.622024536132812,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.2248683743896118,
+            "iou": 0.12667701433818446,
+            "precision": 0.1418687503227028,
+            "recall": 0.5419104595358623,
+            "hd95": 22.135944366455078,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6139153170164863,
+            "iou": 0.4429132826827351,
+            "precision": 0.9079051006038619,
+            "recall": 0.4637484150980201,
+            "hd95": 10.954451560974121,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.2521809033256915,
+            "iou": 0.14428318342872717,
+            "precision": 0.1776798825256975,
+            "recall": 0.4342698933552092,
+            "hd95": 16.498470306396484,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_042",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8879368773738123,
+            "iou": 0.7984590616375346,
+            "precision": 0.8631238734539126,
+            "recall": 0.9142187520573016,
+            "hd95": 3.0,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.7810554672426555,
+            "iou": 0.6407637478596743,
+            "precision": 0.7733695390974191,
+            "recall": 0.7888956980022062,
+            "hd95": 7.280109882354736,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.4440685300655009,
+            "iou": 0.2854036560390382,
+            "precision": 0.37713407503925694,
+            "recall": 0.5398890376889229,
+            "hd95": 6.7082037925720215,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6850307494762452,
+            "iou": 0.5209481128196695,
+            "precision": 0.6525971517601916,
+            "recall": 0.7208568015019627,
+            "hd95": 8.5440034866333,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.6054482103262591,
+            "iou": 0.4341525462226866,
+            "precision": 0.8180261919027647,
+            "recall": 0.48056519334238446,
+            "hd95": 8.0,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_044",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.6282883874518437,
+            "iou": 0.4580324185523993,
+            "precision": 0.5431018078020933,
+            "recall": 0.7451697127937337,
+            "hd95": 55.982139587402344,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.03965715747729308,
+            "iou": 0.020229705037849127,
+            "precision": 0.02582042312177245,
+            "recall": 0.08544652701212789,
+            "hd95": 14.352700233459473,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.042482758620689655,
+            "iou": 0.021702367531003384,
+            "precision": 0.026378896882494004,
+            "recall": 0.10906515580736544,
+            "hd95": 13.919357299804688,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.5502552648372687,
+            "iou": 0.3795532078793881,
+            "precision": 0.5104084451460142,
+            "recall": 0.5968504845408399,
+            "hd95": 56.19608688354492,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.0,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "hd95": 62.033050537109375,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_050",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8755811590911807,
+            "iou": 0.7786966273025862,
+            "precision": 0.8663757420941839,
+            "recall": 0.8849842957236047,
+            "hd95": 14.352700233459473,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.7118078596180786,
+            "iou": 0.5525634238127263,
+            "precision": 0.9541894195843937,
+            "recall": 0.5676215954022312,
+            "hd95": 12.0,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.32285738129016106,
+            "iou": 0.19250442847759888,
+            "precision": 0.3511600043568239,
+            "recall": 0.2987767206227604,
+            "hd95": 9.486832618713379,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.3811741510011218,
+            "iou": 0.23546334600281388,
+            "precision": 0.2543380134733595,
+            "recall": 0.7603580389231708,
+            "hd95": 15.0,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.3942456111465558,
+            "iou": 0.24552049421957908,
+            "precision": 0.7408725247524752,
+            "recall": 0.26858472841479486,
+            "hd95": 14.317821502685547,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_058",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.7235634392076503,
+            "iou": 0.5668620450345745,
+            "precision": 0.7080713554613247,
+            "recall": 0.7397485978657007,
+            "hd95": 11.704699516296387,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.707288995866255,
+            "iou": 0.5471362072454968,
+            "precision": 0.6426873335869152,
+            "recall": 0.7863292611983711,
+            "hd95": 12.806248664855957,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.3266635155716612,
+            "iou": 0.19521687276379385,
+            "precision": 0.2521689775399335,
+            "recall": 0.46362552176505667,
+            "hd95": 14.224963188171387,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.5948112891332037,
+            "iou": 0.42329637616167015,
+            "precision": 0.5937842974542924,
+            "recall": 0.5958418394756635,
+            "hd95": 11.401754379272461,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.7747249882696419,
+            "iou": 0.6322866139051996,
+            "precision": 0.8541211633521094,
+            "recall": 0.7088341919481015,
+            "hd95": 3.316624879837036,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_077",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.84472049689441,
+            "iou": 0.7311827956989247,
+            "precision": 0.7553893532776067,
+            "recall": 0.9580136699679174,
+            "hd95": 4.123105525970459,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.6124871949778047,
+            "iou": 0.44142813872482206,
+            "precision": 0.4420306339096148,
+            "recall": 0.9969217614365113,
+            "hd95": 9.899495124816895,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.3060018187329494,
+            "iou": 0.18063881184575467,
+            "precision": 0.21906363587044975,
+            "recall": 0.5073501696192989,
+            "hd95": 9.165151596069336,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6599345266381541,
+            "iou": 0.4924643905514293,
+            "precision": 0.6707362885048835,
+            "recall": 0.6494751610891707,
+            "hd95": 7.0,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.46921825498758457,
+            "iou": 0.30652198232464484,
+            "precision": 0.34495782449955936,
+            "recall": 0.7334047109207709,
+            "hd95": 5.705087184906006,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_098",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.9320633810630079,
+            "iou": 0.8727703166417962,
+            "precision": 0.903547939222882,
+            "recall": 0.9624373377029147,
+            "hd95": 2.8284270763397217,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.5344578313253012,
+            "iou": 0.3646826701742848,
+            "precision": 0.4080841247151733,
+            "recall": 0.7742126037107644,
+            "hd95": 20.059892654418945,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.3281426953567384,
+            "iou": 0.19627434377646064,
+            "precision": 0.23853626409813122,
+            "recall": 0.5255759114819517,
+            "hd95": 20.124610900878906,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6641271717166388,
+            "iou": 0.49714849921011056,
+            "precision": 0.760537000338344,
+            "recall": 0.5894102993922253,
+            "hd95": 9.05538558959961,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.29586688137412775,
+            "iou": 0.17361723573138466,
+            "precision": 0.24976210974670351,
+            "recall": 0.3628464222236851,
+            "hd95": 16.271133422851562,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_103",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.9032438194832225,
+            "iou": 0.8235593612589678,
+            "precision": 0.8898576334478044,
+            "recall": 0.9170388949972512,
+            "hd95": 3.0,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.6964175688759793,
+            "iou": 0.5342336259284267,
+            "precision": 0.9785504788155058,
+            "recall": 0.5405637541969236,
+            "hd95": 8.062257766723633,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.3746591761670357,
+            "iou": 0.23051114613825716,
+            "precision": 0.5891459484346224,
+            "recall": 0.27466394784148535,
+            "hd95": 7.280109882354736,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.2408255101249127,
+            "iou": 0.1368968863014907,
+            "precision": 0.14693722977877363,
+            "recall": 0.6670487106017192,
+            "hd95": 13.076696395874023,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.43030546623794214,
+            "iou": 0.27413325139550365,
+            "precision": 0.49006683145655955,
+            "recall": 0.3835351436555134,
+            "hd95": 7.8102498054504395,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_106",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8589169635060777,
+            "iou": 0.7527208240209892,
+            "precision": 0.8599937088298424,
+            "recall": 0.8578429110641479,
+            "hd95": 22.371854782104492,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.6764782028558342,
+            "iou": 0.5111198049896175,
+            "precision": 0.7955407747435477,
+            "recall": 0.5884146341463414,
+            "hd95": 22.05673599243164,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.5146541143466005,
+            "iou": 0.3464877233764347,
+            "precision": 0.5928285119473014,
+            "recall": 0.45469494756911344,
+            "hd95": 10.862780570983887,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6275760422682101,
+            "iou": 0.45727563901274887,
+            "precision": 0.5567517969108426,
+            "recall": 0.71904564397306,
+            "hd95": 14.282856941223145,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.43062055320929876,
+            "iou": 0.27438906128782004,
+            "precision": 0.5381835473133618,
+            "recall": 0.3588914256722476,
+            "hd95": 28.142494201660156,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_110",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.7502651965669099,
+            "iou": 0.6003395236380472,
+            "precision": 0.7604092004952108,
+            "recall": 0.7403882755995432,
+            "hd95": 44.72135543823242,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.167828418230563,
+            "iou": 0.09160081943225051,
+            "precision": 0.36480186480186483,
+            "recall": 0.108983286908078,
+            "hd95": 9.019383430480957,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.16739846322722282,
+            "iou": 0.09134471398622342,
+            "precision": 0.3554778554778555,
+            "recall": 0.1094759511844939,
+            "hd95": 9.0,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6262463932210819,
+            "iou": 0.45586514942039774,
+            "precision": 0.5916902477741736,
+            "recall": 0.665089216446858,
+            "hd95": 45.91672134399414,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.0,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "hd95": null,
+            "hd95_status": "undefined_one_empty"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_111",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8455789276711907,
+            "iou": 0.7324701081256317,
+            "precision": 0.8085124297471952,
+            "recall": 0.8862073739098334,
+            "hd95": 3.316624879837036,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.6176371429947503,
+            "iou": 0.44679813253431816,
+            "precision": 0.8233179250128403,
+            "recall": 0.4941811175337187,
+            "hd95": 18.384777069091797,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.41316032729638125,
+            "iou": 0.26036677454153184,
+            "precision": 0.5184294183349085,
+            "recall": 0.3434262948207171,
+            "hd95": 16.911535263061523,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.49384668410275123,
+            "iou": 0.32788606504415246,
+            "precision": 0.3814161786351821,
+            "recall": 0.7002644894204232,
+            "hd95": 5.916079998016357,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.5629617601688723,
+            "iou": 0.39175141242937855,
+            "precision": 0.8806197612395225,
+            "recall": 0.41372315035799523,
+            "hd95": 18.622554779052734,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_114",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8963223711079562,
+            "iou": 0.8121233480176211,
+            "precision": 0.9004024537959598,
+            "recall": 0.8922790985828235,
+            "hd95": 33.73796081542969,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.7543819232467508,
+            "iou": 0.6056285930058721,
+            "precision": 0.7524606487687182,
+            "recall": 0.7563130341057818,
+            "hd95": 7.874007701873779,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.3953722162585834,
+            "iou": 0.2463949710111071,
+            "precision": 0.3358517875235201,
+            "recall": 0.480533465871438,
+            "hd95": 7.549834251403809,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.5908293759482945,
+            "iou": 0.41927454764102134,
+            "precision": 0.5978863409770688,
+            "recall": 0.583937056944769,
+            "hd95": 33.48133850097656,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.5273362791004419,
+            "iou": 0.3580832960143305,
+            "precision": 0.6785087967415285,
+            "recall": 0.43125269667769306,
+            "hd95": 11.575837135314941,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_130",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8672268635057296,
+            "iou": 0.7655785925411696,
+            "precision": 0.792531950361178,
+            "recall": 0.9574666141563137,
+            "hd95": 4.123105525970459,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.8155345295536791,
+            "iou": 0.6885253727543242,
+            "precision": 0.9121168683334036,
+            "recall": 0.7374475917783004,
+            "hd95": 5.74456262588501,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.46917213670408886,
+            "iou": 0.30648262156265527,
+            "precision": 0.4893088701889916,
+            "recall": 0.4506272828330951,
+            "hd95": 5.385164737701416,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6945876930299387,
+            "iou": 0.5320829973191518,
+            "precision": 0.5577641454470681,
+            "recall": 0.9203581526861452,
+            "hd95": 5.099019527435303,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.5620301987683811,
+            "iou": 0.39084979273347964,
+            "precision": 0.6953150417525215,
+            "recall": 0.4716245540475928,
+            "hd95": 8.9442720413208,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_137",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.9095039715909248,
+            "iou": 0.8340277707547457,
+            "precision": 0.9418035641890927,
+            "recall": 0.8793463773524551,
+            "hd95": 3.1622776985168457,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.7922428154157609,
+            "iou": 0.6559619976001089,
+            "precision": 0.6962081823433643,
+            "recall": 0.9190107280888751,
+            "hd95": 7.071067810058594,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.4540387712772737,
+            "iou": 0.2936935046245634,
+            "precision": 0.3940149625935162,
+            "recall": 0.5356371490280778,
+            "hd95": 7.141428470611572,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.7620674887911972,
+            "iou": 0.6155969585507226,
+            "precision": 0.881051259510746,
+            "recall": 0.671397001640089,
+            "hd95": 6.4031243324279785,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.5472435978302006,
+            "iou": 0.37669329628343173,
+            "precision": 0.49220877458396367,
+            "recall": 0.6161348357163148,
+            "hd95": 7.8102498054504395,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_138",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8954180166404766,
+            "iou": 0.8106397081700658,
+            "precision": 0.9401434966322219,
+            "recall": 0.8547547390491949,
+            "hd95": 5.916079998016357,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.7325701624815362,
+            "iou": 0.5779966202435756,
+            "precision": 0.6938708887619358,
+            "recall": 0.7758411659648803,
+            "hd95": 10.816654205322266,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.3365670246577619,
+            "iou": 0.20233278385533743,
+            "precision": 0.3005267843893753,
+            "recall": 0.38242930651937873,
+            "hd95": 11.224971771240234,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.7971774075483852,
+            "iou": 0.6627555988315482,
+            "precision": 0.9036347946478526,
+            "recall": 0.7131599036058016,
+            "hd95": 8.062257766723633,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.24461496631521706,
+            "iou": 0.13935117459771104,
+            "precision": 0.25415110329891083,
+            "recall": 0.23576857001426782,
+            "hd95": 11.87434196472168,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_140",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.9279007641788479,
+            "iou": 0.8654989511937686,
+            "precision": 0.9126964558691961,
+            "recall": 0.9436202212656863,
+            "hd95": 2.4494898319244385,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.7129489654316968,
+            "iou": 0.5539399342239998,
+            "precision": 0.5573846004654771,
+            "recall": 0.9889665555436068,
+            "hd95": 13.03840446472168,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.30755581450779945,
+            "iou": 0.18172286988498554,
+            "precision": 0.23577780484833719,
+            "recall": 0.44216417910447764,
+            "hd95": 11.954022407531738,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6766269806938501,
+            "iou": 0.5112896899232603,
+            "precision": 0.8550044570025397,
+            "recall": 0.5598308481818383,
+            "hd95": 9.433980941772461,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.5774877040749538,
+            "iou": 0.4059632424473484,
+            "precision": 0.46447265507490526,
+            "recall": 0.7631852108150857,
+            "hd95": 7.348469257354736,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_142",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8826807607953115,
+            "iou": 0.7899987128330545,
+            "precision": 0.8269334411209917,
+            "recall": 0.9464877785488472,
+            "hd95": 2.2360680103302,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.7455203163119374,
+            "iou": 0.5942864806866953,
+            "precision": 0.6422669952166981,
+            "recall": 0.8883319967923016,
+            "hd95": 5.385164737701416,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.4549837425720372,
+            "iou": 0.2944847605224964,
+            "precision": 0.4784248997877859,
+            "recall": 0.43373236425823003,
+            "hd95": 5.0,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6399598141403994,
+            "iou": 0.47054478301015695,
+            "precision": 0.641409691629956,
+            "recall": 0.638516476632001,
+            "hd95": 3.0,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.10175202156334232,
+            "iou": 0.05360312389066383,
+            "precision": 0.056809631301730626,
+            "recall": 0.4870967741935484,
+            "hd95": 5.805033206939697,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_161",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.9105970093874067,
+            "iou": 0.8358679177806917,
+            "precision": 0.908658385323139,
+            "recall": 0.9125439232528306,
+            "hd95": 2.2360680103302,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.6226097670781698,
+            "iou": 0.4520213314983657,
+            "precision": 0.5838592125144432,
+            "recall": 0.6668697020455815,
+            "hd95": 8.774964332580566,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.3217931646693298,
+            "iou": 0.19174821475800052,
+            "precision": 0.2915158825894652,
+            "recall": 0.35908865775136206,
+            "hd95": 7.211102485656738,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6414536363774942,
+            "iou": 0.4721617557954265,
+            "precision": 0.667618594320165,
+            "recall": 0.6172622190928827,
+            "hd95": 5.0,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.40482626755455925,
+            "iou": 0.2537819294039845,
+            "precision": 0.4050131926121372,
+            "recall": 0.40463951495979966,
+            "hd95": 7.6778740882873535,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_164",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.7075725162977908,
+            "iou": 0.547475603250808,
+            "precision": 0.9707076888839434,
+            "recall": 0.5566722501395869,
+            "hd95": 14.764822959899902,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.5733181642016828,
+            "iou": 0.4018542535665463,
+            "precision": 0.9788678278688525,
+            "recall": 0.405371002245284,
+            "hd95": 11.233854293823242,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.32875630771343245,
+            "iou": 0.19671356680702476,
+            "precision": 0.6433129576140256,
+            "recall": 0.22079538904899135,
+            "hd95": 10.344079971313477,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.27152346114820214,
+            "iou": 0.15708831161143286,
+            "precision": 0.3284782967486384,
+            "recall": 0.2314008749109829,
+            "hd95": 14.317821502685547,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.6931185270425777,
+            "iou": 0.5303606649760496,
+            "precision": 0.8819257350357268,
+            "recall": 0.5708977858659388,
+            "hd95": 8.9442720413208,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_176",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.9227667449128012,
+            "iou": 0.8566081120825646,
+            "precision": 0.9380178597569901,
+            "recall": 0.9080036277066093,
+            "hd95": 3.1622776985168457,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.8222400187163129,
+            "iou": 0.6981388668174316,
+            "precision": 0.7094014439872681,
+            "recall": 0.9777649375107003,
+            "hd95": 5.385164737701416,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.04468699105688734,
+            "iou": 0.022854136832568605,
+            "precision": 0.02510675185411115,
+            "recall": 0.20301142263759087,
+            "hd95": 19.26136016845703,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.71544698715838,
+            "iou": 0.5569618225219884,
+            "precision": 0.913426169206516,
+            "recall": 0.5880014883972667,
+            "hd95": 7.071067810058594,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.7247222003309953,
+            "iou": 0.5682857495983191,
+            "precision": 0.8295147032292982,
+            "recall": 0.6434368877693815,
+            "hd95": 6.7082037925720215,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_183",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.9016330986796466,
+            "iou": 0.8208851683310813,
+            "precision": 0.9582988341804513,
+            "recall": 0.8512946886358389,
+            "hd95": 4.0,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.7735685260435907,
+            "iou": 0.6307474510158285,
+            "precision": 0.8158053645518827,
+            "recall": 0.735489875840753,
+            "hd95": 8.9442720413208,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.5646031578824163,
+            "iou": 0.39334290094262697,
+            "precision": 0.6758104738154613,
+            "recall": 0.48482351049288414,
+            "hd95": 8.306623458862305,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.8504625293702043,
+            "iou": 0.7398301935336326,
+            "precision": 0.9070676270087448,
+            "recall": 0.8005072766358898,
+            "hd95": 4.690415859222412,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.3453136628288754,
+            "iou": 0.2086882903857347,
+            "precision": 0.25204498977505113,
+            "recall": 0.5481584433634469,
+            "hd95": 11.552033424377441,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_191",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.9067862569956636,
+            "iou": 0.8294684024952536,
+            "precision": 0.9217527708136397,
+            "recall": 0.8922980007294188,
+            "hd95": 3.605551242828369,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.7217891729305879,
+            "iou": 0.5646871061055343,
+            "precision": 0.9045246568378241,
+            "recall": 0.600478284347759,
+            "hd95": 13.190905570983887,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.4905514790440931,
+            "iou": 0.32498722032165467,
+            "precision": 0.7029342972570699,
+            "recall": 0.37672786115574397,
+            "hd95": 12.12435531616211,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.5249754511356868,
+            "iou": 0.3559096365819055,
+            "precision": 0.4227583256633956,
+            "recall": 0.6923844504362965,
+            "hd95": 8.306623458862305,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.16702854419318963,
+            "iou": 0.09112446550329366,
+            "precision": 0.14457941783176714,
+            "recall": 0.19773054980878943,
+            "hd95": 13.527698516845703,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_195",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.7347228465305543,
+            "iou": 0.5806813507348266,
+            "precision": 0.9187350235186226,
+            "recall": 0.6121218094017936,
+            "hd95": 9.833598136901855,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.035005621562490506,
+            "iou": 0.017814616645532428,
+            "precision": 0.9863013698630136,
+            "recall": 0.017819025522041763,
+            "hd95": 26.944387435913086,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.027413697618608086,
+            "iou": 0.01389733751345281,
+            "precision": 0.6136363636363636,
+            "recall": 0.01402001510574018,
+            "hd95": 26.172504425048828,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.5782796490344574,
+            "iou": 0.40674641017955915,
+            "precision": 0.44938137812697554,
+            "recall": 0.8108636610537752,
+            "hd95": 9.899495124816895,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.0007116804554754915,
+            "iou": 0.0003559668950787577,
+            "precision": 0.04,
+            "recall": 0.0003590341980073602,
+            "hd95": 24.919872283935547,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_196",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.9083393588816582,
+            "iou": 0.8320711809771929,
+            "precision": 0.9206940567875749,
+            "recall": 0.896311843364826,
+            "hd95": 2.8284270763397217,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.7629377414099255,
+            "iou": 0.6167335040028412,
+            "precision": 0.6498830500545767,
+            "recall": 0.9236104955234465,
+            "hd95": 15.419137954711914,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.488513236772536,
+            "iou": 0.3232004729763019,
+            "precision": 0.4715918621648175,
+            "recall": 0.5066941297631308,
+            "hd95": 13.747727394104004,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.8004185641274375,
+            "iou": 0.6672482085763705,
+            "precision": 0.8946818870917542,
+            "recall": 0.7241250416453361,
+            "hd95": 6.7082037925720215,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.3549837883066625,
+            "iou": 0.21579348931841302,
+            "precision": 0.22728693245234163,
+            "recall": 0.8101527689369828,
+            "hd95": 7.874007701873779,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_209",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8192574684855811,
+            "iou": 0.6938493758116788,
+            "precision": 0.7373551499477794,
+            "recall": 0.9216280479276423,
+            "hd95": 7.4833149909973145,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.7809640024405126,
+            "iou": 0.6406406406406406,
+            "precision": 0.7296888207426628,
+            "recall": 0.8399900432214704,
+            "hd95": 6.4031243324279785,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.3871745858365192,
+            "iou": 0.2400598244772413,
+            "precision": 0.347423017234338,
+            "recall": 0.43719806763285024,
+            "hd95": 5.74456262588501,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.44591957837990065,
+            "iou": 0.286934686375521,
+            "precision": 0.3750042291166221,
+            "recall": 0.5499106965667792,
+            "hd95": 7.348469257354736,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.7607105129308659,
+            "iou": 0.6138279400157853,
+            "precision": 0.7368959636156908,
+            "recall": 0.786115715845227,
+            "hd95": 5.0,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_213",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.867864468521529,
+            "iou": 0.7665729450149604,
+            "precision": 0.8451554082055532,
+            "recall": 0.8918275958578226,
+            "hd95": 15.748015403747559,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.6502470212147632,
+            "iou": 0.4817526106147056,
+            "precision": 0.5002375429673308,
+            "recall": 0.928760442069216,
+            "hd95": 8.602325439453125,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.2918283220174588,
+            "iou": 0.17084250124210376,
+            "precision": 0.26926949323190513,
+            "recall": 0.31851263728992985,
+            "hd95": 8.602325439453125,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6055383826897512,
+            "iou": 0.4342452851859509,
+            "precision": 0.7702713715263629,
+            "recall": 0.4988520913049215,
+            "hd95": 15.394804000854492,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.23187092095721537,
+            "iou": 0.1311391366758946,
+            "precision": 0.14286512147444846,
+            "recall": 0.615051695119019,
+            "hd95": 7.071067810058594,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_238",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8409713226975356,
+            "iou": 0.7255828429153464,
+            "precision": 0.9948482803032066,
+            "recall": 0.7283193983732449,
+            "hd95": 14.866068840026855,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.6783673655216372,
+            "iou": 0.5132798236246512,
+            "precision": 0.9953738497252701,
+            "recall": 0.5145072039641226,
+            "hd95": 10.816654205322266,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.32901278181000704,
+            "iou": 0.19689724626762403,
+            "precision": 0.3297116374871267,
+            "recall": 0.32831688245096785,
+            "hd95": 11.704699516296387,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.22544475311269144,
+            "iou": 0.12704296105074045,
+            "precision": 0.21107923259722947,
+            "recall": 0.241908431173921,
+            "hd95": 11.575837135314941,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.42312840371509436,
+            "iou": 0.2683340892891855,
+            "precision": 0.9842658173693968,
+            "recall": 0.26949006950048154,
+            "hd95": 17.14642906188965,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_241",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8676945366737097,
+            "iou": 0.7663078248556244,
+            "precision": 0.9607912341777228,
+            "recall": 0.7910454989741377,
+            "hd95": 7.8102498054504395,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.4111139653786554,
+            "iou": 0.25874351993825034,
+            "precision": 0.5000604765552554,
+            "recall": 0.3490312504397011,
+            "hd95": 19.748416900634766,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.31400301279897697,
+            "iou": 0.1862417401588975,
+            "precision": 0.32767863201465697,
+            "recall": 0.30142316174940703,
+            "hd95": 19.313207626342773,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.7711144734331125,
+            "iou": 0.6274908905366957,
+            "precision": 0.8234844569956257,
+            "recall": 0.725007208996828,
+            "hd95": 7.874007701873779,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.024855654133220672,
+            "iou": 0.012584221596378026,
+            "precision": 0.0654309545875811,
+            "recall": 0.015341822765004998,
+            "hd95": 25.787593841552734,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_268",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.7021670828969628,
+            "iou": 0.5410304158907511,
+            "precision": 0.7125183933729359,
+            "recall": 0.6921122286924298,
+            "hd95": 7.549834251403809,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.6259375227554067,
+            "iou": 0.45553789083200846,
+            "precision": 0.9759309718437784,
+            "recall": 0.46071390288348163,
+            "hd95": 10.29563045501709,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.0,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": 1.0,
+            "hd95": null,
+            "hd95_status": "undefined_one_empty"
+          },
+          "edema": {
+            "dice": 0.35803624606483453,
+            "iou": 0.2180536843196186,
+            "precision": 0.3017569021154536,
+            "recall": 0.44012132622110656,
+            "hd95": 6.352062225341797,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.2661462689341139,
+            "iou": 0.15349983921106228,
+            "precision": 1.0,
+            "recall": 0.15349983921106228,
+            "hd95": 11.106094360351562,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_273",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8747523451514494,
+            "iou": 0.7773865081009069,
+            "precision": 0.9258669814195808,
+            "recall": 0.8289862353929713,
+            "hd95": 13.892443656921387,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.8338059964726632,
+            "iou": 0.7149805212088949,
+            "precision": 0.8814860484079473,
+            "recall": 0.7910193373370337,
+            "hd95": 17.748239517211914,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.01994839497267153,
+            "iou": 0.010074684377933778,
+            "precision": 0.010153933060302217,
+            "recall": 0.5634796238244514,
+            "hd95": 34.380226135253906,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6413192283758556,
+            "iou": 0.4720161216451406,
+            "precision": 0.67955275477812,
+            "recall": 0.6071587877359682,
+            "hd95": 12.401634216308594,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.40805754986160425,
+            "iou": 0.2563268225092746,
+            "precision": 0.9637671417047593,
+            "recall": 0.2588209808009965,
+            "hd95": 15.937376976013184,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_276",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8098484732415082,
+            "iou": 0.6804582904222451,
+            "precision": 0.7140464161240645,
+            "recall": 0.9353411664779162,
+            "hd95": 22.11672019958496,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.29458445040214476,
+            "iou": 0.17273470414387224,
+            "precision": 0.18848634554686428,
+            "recall": 0.6739450441609421,
+            "hd95": 45.90152359008789,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.22801556420233463,
+            "iou": 0.12867808519982432,
+            "precision": 0.1368625924484235,
+            "recall": 0.6827184466019417,
+            "hd95": 46.29902267456055,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.7534141284141284,
+            "iou": 0.6043820530836405,
+            "precision": 0.7089584875193433,
+            "recall": 0.803817987642078,
+            "hd95": 21.463899612426758,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.013622291021671827,
+            "iou": 0.00685785536159601,
+            "precision": 0.012724117987275883,
+            "recall": 0.014656895403064623,
+            "hd95": 46.292545318603516,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_280",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.9196271848500581,
+            "iou": 0.851212814645309,
+            "precision": 0.892873430786587,
+            "recall": 0.9480337436603206,
+            "hd95": 3.0,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.040210509004193734,
+            "iou": 0.020517769479293416,
+            "precision": 0.020812053115423904,
+            "recall": 0.5920096852300242,
+            "hd95": 24.351591110229492,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.04075637965852763,
+            "iou": 0.020802098950524737,
+            "precision": 0.021277955271565493,
+            "recall": 0.48191027496382055,
+            "hd95": 27.166154861450195,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.5013433257918553,
+            "iou": 0.33452847101004857,
+            "precision": 0.7807321772639692,
+            "recall": 0.3692171513368566,
+            "hd95": 4.242640495300293,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.012028567848640521,
+            "iou": 0.006050674398083953,
+            "precision": 0.006117767015039511,
+            "recall": 0.35555555555555557,
+            "hd95": 20.63612937927246,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_287",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.9013011428288725,
+            "iou": 0.8203350144092219,
+            "precision": 0.8749399673422342,
+            "recall": 0.9293001428279943,
+            "hd95": 4.242640495300293,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.7847238542890717,
+            "iou": 0.6457164958421968,
+            "precision": 0.6925769400295574,
+            "recall": 0.905154010369015,
+            "hd95": 5.656854152679443,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.41539521195550083,
+            "iou": 0.26214436248682826,
+            "precision": 0.4819586380587979,
+            "recall": 0.3649867957746479,
+            "hd95": 7.280109882354736,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.5196301349098075,
+            "iou": 0.3510137210731108,
+            "precision": 0.6354738247071037,
+            "recall": 0.43950971844709985,
+            "hd95": 13.152946472167969,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.11929198274579801,
+            "iou": 0.0634292945270484,
+            "precision": 0.06712420488784734,
+            "recall": 0.5353805073431241,
+            "hd95": 10.630146026611328,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_288",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.6962525586521807,
+            "iou": 0.534039443968068,
+            "precision": 0.8840440632559627,
+            "recall": 0.5742652692822171,
+            "hd95": 11.747340202331543,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.48739369081367995,
+            "iou": 0.32222111454491076,
+            "precision": 0.5542181069958848,
+            "recall": 0.43494994079018195,
+            "hd95": 24.525493621826172,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.27906286189387414,
+            "iou": 0.1621574987921872,
+            "precision": 0.3052487982330778,
+            "recall": 0.25701471312147894,
+            "hd95": 9.486832618713379,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.37144175013178704,
+            "iou": 0.22808011329152336,
+            "precision": 0.5404861210988062,
+            "recall": 0.2829464173672983,
+            "hd95": 14.966629981994629,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.2235975366892368,
+            "iou": 0.12587098999655053,
+            "precision": 0.26507336917041985,
+            "recall": 0.19334499019763685,
+            "hd95": 25.865034103393555,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_291",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.9374733045417873,
+            "iou": 0.8823056479889229,
+            "precision": 0.9723268211284868,
+            "recall": 0.9050320026756711,
+            "hd95": 3.1622776985168457,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.6651267022927082,
+            "iou": 0.4982695387158428,
+            "precision": 0.5496734782261833,
+            "recall": 0.8419747913829825,
+            "hd95": 9.486832618713379,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.0005103419290924919,
+            "iou": 0.0002552360933863824,
+            "precision": 0.00025565447545717034,
+            "recall": 0.1349206349206349,
+            "hd95": 34.438350677490234,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.7354908735686246,
+            "iou": 0.5816414118293353,
+            "precision": 0.8806817197220441,
+            "recall": 0.6313974941142122,
+            "hd95": 9.05538558959961,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.4588599926023239,
+            "iou": 0.29774062732765044,
+            "precision": 0.8466136395726456,
+            "recall": 0.3147176149485618,
+            "hd95": 14.59451961517334,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_297",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.47307838851344575,
+            "iou": 0.3098249346624115,
+            "precision": 0.9486488660125463,
+            "recall": 0.3151096625971736,
+            "hd95": 78.80671691894531,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.0,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "hd95": 137.44090270996094,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.0,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": 1.0,
+            "hd95": null,
+            "hd95_status": "undefined_one_empty"
+          },
+          "edema": {
+            "dice": 0.47392272008151665,
+            "iou": 0.3105496204666854,
+            "precision": 0.7293059338119997,
+            "recall": 0.3510088973625675,
+            "hd95": 19.50639533996582,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.0,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "hd95": 139.4345703125,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_301",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8603511224330265,
+            "iou": 0.7549264860153968,
+            "precision": 0.9172064446550541,
+            "recall": 0.8101330131165713,
+            "hd95": 9.949873924255371,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.7041417956792063,
+            "iou": 0.5433787379910694,
+            "precision": 0.6065858540085344,
+            "recall": 0.8390910673863834,
+            "hd95": 11.704699516296387,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.05552235114692607,
+            "iou": 0.028553864416839783,
+            "precision": 0.030169324493818313,
+            "recall": 0.34779240898528274,
+            "hd95": 27.964262008666992,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6814163031192894,
+            "iou": 0.5167789536085364,
+            "precision": 0.8770529693278225,
+            "recall": 0.5571398960150623,
+            "hd95": 17.37814712524414,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.6011635277073524,
+            "iou": 0.42975968929525044,
+            "precision": 0.7632418450926858,
+            "recall": 0.49586421942976644,
+            "hd95": 11.045360565185547,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_304",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8045890478216753,
+            "iou": 0.6730648120259577,
+            "precision": 0.8212281170653482,
+            "recall": 0.7886108437600257,
+            "hd95": 43.011627197265625,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.6344909047956532,
+            "iou": 0.46465520224213697,
+            "precision": 0.9274171270718232,
+            "recall": 0.4821903052064632,
+            "hd95": 9.899495124816895,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.0,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": 1.0,
+            "hd95": null,
+            "hd95_status": "undefined_one_empty"
+          },
+          "edema": {
+            "dice": 0.22022160664819945,
+            "iou": 0.12373540856031129,
+            "precision": 0.13376909137975668,
+            "recall": 0.6225903614457832,
+            "hd95": 44.64077377319336,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.34996897438170377,
+            "iou": 0.2120984205436768,
+            "precision": 0.9881528449858168,
+            "recall": 0.2126391382405745,
+            "hd95": 11.445523262023926,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_314",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.6899189578126184,
+            "iou": 0.526623113834769,
+            "precision": 0.7144033567311086,
+            "recall": 0.6670572296876717,
+            "hd95": 12.529964447021484,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.1167924797037459,
+            "iou": 0.062017849039479656,
+            "precision": 0.11634506242905789,
+            "recall": 0.11724335144409494,
+            "hd95": 20.02498435974121,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.1378351539225422,
+            "iou": 0.07401877133105803,
+            "precision": 0.1559550561797753,
+            "recall": 0.12348754448398576,
+            "hd95": 18.72028923034668,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6366753292131642,
+            "iou": 0.467001986288204,
+            "precision": 0.6632843427219366,
+            "recall": 0.6121189216427312,
+            "hd95": 11.180339813232422,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.0,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "hd95": 27.960683822631836,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_315",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.9192256990217165,
+            "iou": 0.8505251264668875,
+            "precision": 0.8753402574063797,
+            "recall": 0.9677438204873487,
+            "hd95": 2.8284270763397217,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.8699570907993186,
+            "iou": 0.7698442985803694,
+            "precision": 0.846537977339488,
+            "recall": 0.8947088304430745,
+            "hd95": 3.316624879837036,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.013235505682635592,
+            "iou": 0.00666183924692252,
+            "precision": 0.00667005002537519,
+            "recall": 0.8440366972477065,
+            "hd95": 27.36786460876465,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.5954531298660853,
+            "iou": 0.4239467849223947,
+            "precision": 0.545934756228139,
+            "recall": 0.6548505865228187,
+            "hd95": 5.0,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.6170900692840646,
+            "iou": 0.44622578490313963,
+            "precision": 0.9983062668127927,
+            "recall": 0.446563864872092,
+            "hd95": 6.164413928985596,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_317",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8783581589584404,
+            "iou": 0.7831003862541314,
+            "precision": 0.8175771181508273,
+            "recall": 0.9489022919179735,
+            "hd95": 2.4494898319244385,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.6796473181484203,
+            "iou": 0.5147468002225932,
+            "precision": 0.5644259127428048,
+            "recall": 0.8539775350053854,
+            "hd95": 5.74456262588501,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.27415326206414226,
+            "iou": 0.15885145305082785,
+            "precision": 0.22075623491552696,
+            "recall": 0.36162361623616235,
+            "hd95": 7.8102498054504395,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6418251485218125,
+            "iou": 0.4725644476653898,
+            "precision": 0.6419379790450742,
+            "recall": 0.6417123576549979,
+            "hd95": 3.605551242828369,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.41499288312509885,
+            "iou": 0.2618239872280982,
+            "precision": 0.36263128800442235,
+            "recall": 0.48502772643253234,
+            "hd95": 4.242640495300293,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_318",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.8922016116474618,
+            "iou": 0.8053826590001625,
+            "precision": 0.9221866795425053,
+            "recall": 0.8641050776205782,
+            "hd95": 10.488088607788086,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.6939266987508704,
+            "iou": 0.531307621162762,
+            "precision": 0.9013051386085184,
+            "recall": 0.5641282251759187,
+            "hd95": 11.532562255859375,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.05420126968296285,
+            "iou": 0.027855537594133187,
+            "precision": 0.028100389786015433,
+            "recall": 0.7617250673854448,
+            "hd95": 34.2636833190918,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.5536086637055081,
+            "iou": 0.3827516452938646,
+            "precision": 0.4234274373202641,
+            "recall": 0.7993729808262124,
+            "hd95": 7.0,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.469504624594566,
+            "iou": 0.30676644447239343,
+            "precision": 0.9799124181431039,
+            "recall": 0.30870775851158083,
+            "hd95": 17.11724281311035,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_321",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.9180951158668154,
+            "iou": 0.848591340450771,
+            "precision": 0.9645716404577708,
+            "recall": 0.8758915179527993,
+            "hd95": 2.8284270763397217,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.7069655338635816,
+            "iou": 0.5467491798389502,
+            "precision": 0.6541480820695807,
+            "recall": 0.7690613529103304,
+            "hd95": 8.0,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.0,
+            "iou": 0.0,
+            "precision": 0.0,
+            "recall": 1.0,
+            "hd95": null,
+            "hd95_status": "undefined_one_empty"
+          },
+          "edema": {
+            "dice": 0.577377710862671,
+            "iou": 0.40585453726638143,
+            "precision": 0.7012956694292051,
+            "recall": 0.4906759589469959,
+            "hd95": 6.082762718200684,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.4627664898408568,
+            "iou": 0.30103851287560635,
+            "precision": 0.8140681398010389,
+            "recall": 0.32326516343296624,
+            "hd95": 11.401754379272461,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_334",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.9357034278702024,
+            "iou": 0.8791754595222804,
+            "precision": 0.9230808752223699,
+            "recall": 0.9486759775061383,
+            "hd95": 2.4494898319244385,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.2974029735470168,
+            "iou": 0.17467607949873834,
+            "precision": 0.17578999928668235,
+            "recall": 0.9649933432531913,
+            "hd95": 28.72281265258789,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.16238109643373333,
+            "iou": 0.08836494668105577,
+            "precision": 0.10118336998638601,
+            "recall": 0.41090414221314964,
+            "hd95": 26.949928283691406,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.6752662099459334,
+            "iou": 0.5097372883637049,
+            "precision": 0.8847735183498026,
+            "recall": 0.5459820238000851,
+            "hd95": 10.344079971313477,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.05282082013526239,
+            "iou": 0.027126841063970102,
+            "precision": 0.02760626398210291,
+            "recall": 0.6096837944664032,
+            "hd95": 18.407873153686523,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_343",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.9217227441387967,
+            "iou": 0.8548105221811724,
+            "precision": 0.8915448052295032,
+            "recall": 0.9540152477763659,
+            "hd95": 4.123105525970459,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.776831485557272,
+            "iou": 0.6350976798247575,
+            "precision": 0.6677085046882711,
+            "recall": 0.9285901039283613,
+            "hd95": 9.797959327697754,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.47450105895404476,
+            "iou": 0.3110464689203285,
+            "precision": 0.3775657601426661,
+            "recall": 0.6384030876854421,
+            "hd95": 9.110433578491211,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.707626150941084,
+            "iou": 0.5475398248396662,
+            "precision": 0.7623225279934712,
+            "recall": 0.6602532119246601,
+            "hd95": 6.082762718200684,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.7027671170460719,
+            "iou": 0.541743218415649,
+            "precision": 0.6906754848265647,
+            "recall": 0.7152896689497716,
+            "hd95": 8.062257766723633,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_356",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.7858317622046612,
+            "iou": 0.6472181842209594,
+            "precision": 0.9141674962667994,
+            "recall": 0.6890931688671059,
+            "hd95": 7.0,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.47770700636942676,
+            "iou": 0.3138075313807531,
+            "precision": 0.9860436893203883,
+            "recall": 0.31520755204965734,
+            "hd95": 10.049875259399414,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.2205830698981384,
+            "iou": 0.12396367943150415,
+            "precision": 0.37636341843461585,
+            "recall": 0.15600934068663982,
+            "hd95": 9.433980941772461,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.2430005593664439,
+            "iou": 0.13830428954423593,
+            "precision": 0.1854331416247304,
+            "recall": 0.35240372299547434,
+            "hd95": 9.0,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.22299595141700404,
+            "iou": 0.1254898386949786,
+            "precision": 0.8912621359223301,
+            "recall": 0.12744099953725127,
+            "hd95": 11.575837135314941,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      },
+      {
+        "case_id": "BraTS20_Training_360",
+        "original_shape": [
+          240,
+          240,
+          155
+        ],
+        "spacing_mm": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "metrics": {
+          "whole_tumor": {
+            "dice": 0.7095032194917066,
+            "iou": 0.5497907706613971,
+            "precision": 0.5625918106396265,
+            "recall": 0.9602586486925451,
+            "hd95": 32.95451354980469,
+            "hd95_status": "monai_hd95"
+          },
+          "tumor_core": {
+            "dice": 0.6503891245532583,
+            "iou": 0.4819086274315696,
+            "precision": 0.5224745631734856,
+            "recall": 0.8612423261327248,
+            "hd95": 30.675724029541016,
+            "hd95_status": "monai_hd95"
+          },
+          "enhancing_tumor": {
+            "dice": 0.42428199617306456,
+            "iou": 0.2692626441676834,
+            "precision": 0.3517374110995835,
+            "recall": 0.5345260945069007,
+            "hd95": 29.30870246887207,
+            "hd95_status": "monai_hd95"
+          },
+          "edema": {
+            "dice": 0.5077717549289513,
+            "iou": 0.3402775390468333,
+            "precision": 0.39607592066477265,
+            "recall": 0.7072090309366739,
+            "hd95": 34.073448181152344,
+            "hd95_status": "monai_hd95"
+          },
+          "necrotic_non_enhancing": {
+            "dice": 0.4904119318181818,
+            "iou": 0.3248647377087744,
+            "precision": 0.36253515844740297,
+            "recall": 0.7576612587193353,
+            "hd95": 30.675724029541016,
+            "hd95_status": "monai_hd95"
+          }
+        }
+      }
+    ]
+  },
+  "vlm_metrics": {
+    "n_cases": 56,
+    "raw_generation_two_section_structure_rate": 1.0,
+    "final_pipeline_two_section_structure_rate": 1.0,
+    "structure_metric_note": "Raw-generation metrics measure the language-model text before slot-grounding/structural repair; final-pipeline metrics measure the delivered report after the explicit deployment-available slot guardrail.",
+    "raw_conditioning_slot_consistency_rate": 1.0,
+    "raw_ground_truth_slot_consistency_rate": 0.9107142857142857,
+    "conditioning_slot_consistency_rate": 1.0,
+    "ground_truth_slot_consistency_rate": 0.9107142857142857,
+    "raw_rule_based_unsupported_content_flag_rate": 0.0,
+    "rule_based_unsupported_content_flag_rate": 0.0,
+    "raw_prompt_leakage_rate": 0.0,
+    "final_prompt_leakage_rate": 0.0,
+    "raw_truncation_or_incomplete_rate": 0.0,
+    "final_truncation_or_incomplete_rate": 0.0,
+    "unsupported_content_flag_category_rates": {},
+    "unsupported_content_flagged_case_count": 0,
+    "unsupported_content_diagnostic_note": "Conservative rule-based asserted unsupported-content proxy; not a clinically validated hallucination metric.",
+    "rouge": {
+      "rouge1": 0.20096210900619377,
+      "rouge2": 0.022585680116137805,
+      "rougeL": 0.12736716235136886,
+      "rougeLsum": 0.13471234991669828
+    },
+    "bleu": 0.0,
+    "meteor": 0.10627203040684466,
+    "bertscore_f1": 0.8479726612567902
+  },
+  "vlm_rag_metrics": {
+    "n_cases": 56,
+    "raw_generation_two_section_structure_rate": 1.0,
+    "final_pipeline_two_section_structure_rate": 1.0,
+    "structure_metric_note": "Raw-generation metrics measure the language-model text before slot-grounding/structural repair; final-pipeline metrics measure the delivered report after the explicit deployment-available slot guardrail.",
+    "raw_conditioning_slot_consistency_rate": 1.0,
+    "raw_ground_truth_slot_consistency_rate": 0.9107142857142857,
+    "conditioning_slot_consistency_rate": 1.0,
+    "ground_truth_slot_consistency_rate": 0.9107142857142857,
+    "raw_rule_based_unsupported_content_flag_rate": 0.0,
+    "rule_based_unsupported_content_flag_rate": 0.0,
+    "raw_prompt_leakage_rate": 0.0,
+    "final_prompt_leakage_rate": 0.0,
+    "raw_truncation_or_incomplete_rate": 0.0,
+    "final_truncation_or_incomplete_rate": 0.0,
+    "unsupported_content_flag_category_rates": {},
+    "unsupported_content_flagged_case_count": 0,
+    "unsupported_content_diagnostic_note": "Conservative rule-based asserted unsupported-content proxy; not a clinically validated hallucination metric.",
+    "rouge": {
+      "rouge1": 0.20096210900619377,
+      "rouge2": 0.022585680116137805,
+      "rougeL": 0.12736716235136886,
+      "rougeLsum": 0.13471234991669828
+    },
+    "bleu": 0.0,
+    "meteor": 0.10627203040684466,
+    "bertscore_f1": 0.8479726612567902
+  },
+  "report_generation": {
+    "template_gt_oracle": {
+      "n_cases": 56,
+      "raw_generation_two_section_structure_rate": 1.0,
+      "final_pipeline_two_section_structure_rate": 1.0,
+      "structure_metric_note": "Raw-generation metrics measure the language-model text before slot-grounding/structural repair; final-pipeline metrics measure the delivered report after the explicit deployment-available slot guardrail.",
+      "raw_conditioning_slot_consistency_rate": 1.0,
+      "raw_ground_truth_slot_consistency_rate": 1.0,
+      "conditioning_slot_consistency_rate": 1.0,
+      "ground_truth_slot_consistency_rate": 1.0,
+      "raw_rule_based_unsupported_content_flag_rate": 0.0,
+      "rule_based_unsupported_content_flag_rate": 0.0,
+      "raw_prompt_leakage_rate": 0.0,
+      "final_prompt_leakage_rate": 0.0,
+      "raw_truncation_or_incomplete_rate": 0.0,
+      "final_truncation_or_incomplete_rate": 0.0,
+      "unsupported_content_flag_category_rates": {},
+      "unsupported_content_flagged_case_count": 0,
+      "unsupported_content_diagnostic_note": "Conservative rule-based asserted unsupported-content proxy; not a clinically validated hallucination metric.",
+      "rouge": {
+        "rouge1": 0.1566778332421499,
+        "rouge2": 0.0060667610954457905,
+        "rougeL": 0.11118093483156012,
+        "rougeLsum": 0.12034856048519559
+      },
+      "bleu": 0.0,
+      "meteor": 0.08469934838213812,
+      "bertscore_f1": 0.8436615956681115
+    },
+    "cnn_template": {
+      "n_cases": 56,
+      "raw_generation_two_section_structure_rate": 1.0,
+      "final_pipeline_two_section_structure_rate": 1.0,
+      "structure_metric_note": "Raw-generation metrics measure the language-model text before slot-grounding/structural repair; final-pipeline metrics measure the delivered report after the explicit deployment-available slot guardrail.",
+      "raw_conditioning_slot_consistency_rate": 1.0,
+      "raw_ground_truth_slot_consistency_rate": 0.9107142857142857,
+      "conditioning_slot_consistency_rate": 1.0,
+      "ground_truth_slot_consistency_rate": 0.9107142857142857,
+      "raw_rule_based_unsupported_content_flag_rate": 0.0,
+      "rule_based_unsupported_content_flag_rate": 0.0,
+      "raw_prompt_leakage_rate": 0.0,
+      "final_prompt_leakage_rate": 0.0,
+      "raw_truncation_or_incomplete_rate": 0.0,
+      "final_truncation_or_incomplete_rate": 0.0,
+      "unsupported_content_flag_category_rates": {},
+      "unsupported_content_flagged_case_count": 0,
+      "unsupported_content_diagnostic_note": "Conservative rule-based asserted unsupported-content proxy; not a clinically validated hallucination metric.",
+      "rouge": {
+        "rouge1": 0.15602306770574992,
+        "rouge2": 0.0066523300050659005,
+        "rougeL": 0.1104118708590871,
+        "rougeLsum": 0.12022924660177209
+      },
+      "bleu": 0.0,
+      "meteor": 0.08499339508020408,
+      "bertscore_f1": 0.8435253862823758
+    },
+    "vlm_base": {
+      "n_cases": 56,
+      "raw_generation_two_section_structure_rate": 1.0,
+      "final_pipeline_two_section_structure_rate": 1.0,
+      "structure_metric_note": "Raw-generation metrics measure the language-model text before slot-grounding/structural repair; final-pipeline metrics measure the delivered report after the explicit deployment-available slot guardrail.",
+      "raw_conditioning_slot_consistency_rate": 1.0,
+      "raw_ground_truth_slot_consistency_rate": 0.9107142857142857,
+      "conditioning_slot_consistency_rate": 1.0,
+      "ground_truth_slot_consistency_rate": 0.9107142857142857,
+      "raw_rule_based_unsupported_content_flag_rate": 0.0,
+      "rule_based_unsupported_content_flag_rate": 0.0,
+      "raw_prompt_leakage_rate": 0.0,
+      "final_prompt_leakage_rate": 0.0,
+      "raw_truncation_or_incomplete_rate": 0.0,
+      "final_truncation_or_incomplete_rate": 0.0,
+      "unsupported_content_flag_category_rates": {},
+      "unsupported_content_flagged_case_count": 0,
+      "unsupported_content_diagnostic_note": "Conservative rule-based asserted unsupported-content proxy; not a clinically validated hallucination metric.",
+      "rouge": {
+        "rouge1": 0.20096210900619377,
+        "rouge2": 0.022585680116137805,
+        "rougeL": 0.12736716235136886,
+        "rougeLsum": 0.13471234991669828
+      },
+      "bleu": 0.0,
+      "meteor": 0.10627203040684466,
+      "bertscore_f1": 0.8479726612567902
+    },
+    "vlm_rag": {
+      "n_cases": 56,
+      "raw_generation_two_section_structure_rate": 1.0,
+      "final_pipeline_two_section_structure_rate": 1.0,
+      "structure_metric_note": "Raw-generation metrics measure the language-model text before slot-grounding/structural repair; final-pipeline metrics measure the delivered report after the explicit deployment-available slot guardrail.",
+      "raw_conditioning_slot_consistency_rate": 1.0,
+      "raw_ground_truth_slot_consistency_rate": 0.9107142857142857,
+      "conditioning_slot_consistency_rate": 1.0,
+      "ground_truth_slot_consistency_rate": 0.9107142857142857,
+      "raw_rule_based_unsupported_content_flag_rate": 0.0,
+      "rule_based_unsupported_content_flag_rate": 0.0,
+      "raw_prompt_leakage_rate": 0.0,
+      "final_prompt_leakage_rate": 0.0,
+      "raw_truncation_or_incomplete_rate": 0.0,
+      "final_truncation_or_incomplete_rate": 0.0,
+      "unsupported_content_flag_category_rates": {},
+      "unsupported_content_flagged_case_count": 0,
+      "unsupported_content_diagnostic_note": "Conservative rule-based asserted unsupported-content proxy; not a clinically validated hallucination metric.",
+      "rouge": {
+        "rouge1": 0.20096210900619377,
+        "rouge2": 0.022585680116137805,
+        "rougeL": 0.12736716235136886,
+        "rougeLsum": 0.13471234991669828
+      },
+      "bleu": 0.0,
+      "meteor": 0.10627203040684466,
+      "bertscore_f1": 0.8479726612567902
+    }
+  }
+}

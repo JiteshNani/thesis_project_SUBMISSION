@@ -1,0 +1,1798 @@
+{
+  "cnn": {
+    "n_cases": 56,
+    "per_slot": {
+      "edema": {
+        "accuracy": 1.0,
+        "balanced_accuracy": null,
+        "macro_f1": 0.5,
+        "support": {
+          "0": 0,
+          "1": 56
+        },
+        "labels": [
+          0,
+          1
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            56
+          ]
+        ],
+        "per_class_precision": [
+          0.0,
+          1.0
+        ],
+        "per_class_recall": [
+          0.0,
+          1.0
+        ],
+        "per_class_f1": [
+          0.0,
+          1.0
+        ],
+        "per_class_support": [
+          0,
+          56
+        ],
+        "informative": false
+      },
+      "enhancing": {
+        "accuracy": 0.9285714285714286,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.48148148148148145,
+        "support": {
+          "0": 4,
+          "1": 52
+        },
+        "labels": [
+          0,
+          1
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            52
+          ]
+        ],
+        "per_class_precision": [
+          0.0,
+          0.9285714285714286
+        ],
+        "per_class_recall": [
+          0.0,
+          1.0
+        ],
+        "per_class_f1": [
+          0.0,
+          0.9629629629629629
+        ],
+        "per_class_support": [
+          4,
+          52
+        ],
+        "informative": true
+      },
+      "necrotic": {
+        "accuracy": 1.0,
+        "balanced_accuracy": null,
+        "macro_f1": 0.5,
+        "support": {
+          "0": 0,
+          "1": 56
+        },
+        "labels": [
+          0,
+          1
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            56
+          ]
+        ],
+        "per_class_precision": [
+          0.0,
+          1.0
+        ],
+        "per_class_recall": [
+          0.0,
+          1.0
+        ],
+        "per_class_f1": [
+          0.0,
+          1.0
+        ],
+        "per_class_support": [
+          0,
+          56
+        ],
+        "informative": false
+      },
+      "hemisphere": {
+        "accuracy": 0.9107142857142857,
+        "balanced_accuracy": 0.9107142857142857,
+        "macro_f1": 0.9099967855994857,
+        "support": {
+          "0": 28,
+          "1": 28
+        },
+        "labels": [
+          0,
+          1
+        ],
+        "confusion_matrix": [
+          [
+            28,
+            0
+          ],
+          [
+            5,
+            23
+          ]
+        ],
+        "per_class_precision": [
+          0.8484848484848485,
+          1.0
+        ],
+        "per_class_recall": [
+          1.0,
+          0.8214285714285714
+        ],
+        "per_class_f1": [
+          0.9180327868852459,
+          0.9019607843137255
+        ],
+        "per_class_support": [
+          28,
+          28
+        ],
+        "informative": true
+      },
+      "extent": {
+        "accuracy": 0.7142857142857143,
+        "balanced_accuracy": 0.6537336932073775,
+        "macro_f1": 0.6489898989898989,
+        "support": {
+          "0": 24,
+          "1": 13,
+          "2": 19
+        },
+        "labels": [
+          0,
+          1,
+          2
+        ],
+        "confusion_matrix": [
+          [
+            22,
+            0,
+            2
+          ],
+          [
+            2,
+            4,
+            7
+          ],
+          [
+            0,
+            5,
+            14
+          ]
+        ],
+        "per_class_precision": [
+          0.9166666666666666,
+          0.4444444444444444,
+          0.6086956521739131
+        ],
+        "per_class_recall": [
+          0.9166666666666666,
+          0.3076923076923077,
+          0.7368421052631579
+        ],
+        "per_class_f1": [
+          0.9166666666666666,
+          0.36363636363636365,
+          0.6666666666666666
+        ],
+        "per_class_support": [
+          24,
+          13,
+          19
+        ],
+        "informative": true
+      }
+    },
+    "micro_accuracy_all_slots": 0.9107142857142857,
+    "macro_balanced_accuracy_informative_slots": 0.688149326307221,
+    "macro_f1_informative_slots": 0.6801560553569553
+  },
+  "majority_classes_learned_from_training_split": {
+    "edema": 1,
+    "enhancing": 1,
+    "necrotic": 1,
+    "hemisphere": 0,
+    "extent": 2
+  },
+  "majority_baseline": {
+    "n_cases": 56,
+    "per_slot": {
+      "edema": {
+        "accuracy": 1.0,
+        "balanced_accuracy": null,
+        "macro_f1": 0.5,
+        "support": {
+          "0": 0,
+          "1": 56
+        },
+        "labels": [
+          0,
+          1
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            56
+          ]
+        ],
+        "per_class_precision": [
+          0.0,
+          1.0
+        ],
+        "per_class_recall": [
+          0.0,
+          1.0
+        ],
+        "per_class_f1": [
+          0.0,
+          1.0
+        ],
+        "per_class_support": [
+          0,
+          56
+        ],
+        "informative": false
+      },
+      "enhancing": {
+        "accuracy": 0.9285714285714286,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.48148148148148145,
+        "support": {
+          "0": 4,
+          "1": 52
+        },
+        "labels": [
+          0,
+          1
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            52
+          ]
+        ],
+        "per_class_precision": [
+          0.0,
+          0.9285714285714286
+        ],
+        "per_class_recall": [
+          0.0,
+          1.0
+        ],
+        "per_class_f1": [
+          0.0,
+          0.9629629629629629
+        ],
+        "per_class_support": [
+          4,
+          52
+        ],
+        "informative": true
+      },
+      "necrotic": {
+        "accuracy": 1.0,
+        "balanced_accuracy": null,
+        "macro_f1": 0.5,
+        "support": {
+          "0": 0,
+          "1": 56
+        },
+        "labels": [
+          0,
+          1
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            56
+          ]
+        ],
+        "per_class_precision": [
+          0.0,
+          1.0
+        ],
+        "per_class_recall": [
+          0.0,
+          1.0
+        ],
+        "per_class_f1": [
+          0.0,
+          1.0
+        ],
+        "per_class_support": [
+          0,
+          56
+        ],
+        "informative": false
+      },
+      "hemisphere": {
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.3333333333333333,
+        "support": {
+          "0": 28,
+          "1": 28
+        },
+        "labels": [
+          0,
+          1
+        ],
+        "confusion_matrix": [
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            0
+          ]
+        ],
+        "per_class_precision": [
+          0.5,
+          0.0
+        ],
+        "per_class_recall": [
+          1.0,
+          0.0
+        ],
+        "per_class_f1": [
+          0.6666666666666666,
+          0.0
+        ],
+        "per_class_support": [
+          28,
+          28
+        ],
+        "informative": true
+      },
+      "extent": {
+        "accuracy": 0.3392857142857143,
+        "balanced_accuracy": 0.3333333333333333,
+        "macro_f1": 0.1688888888888889,
+        "support": {
+          "0": 24,
+          "1": 13,
+          "2": 19
+        },
+        "labels": [
+          0,
+          1,
+          2
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            24
+          ],
+          [
+            0,
+            0,
+            13
+          ],
+          [
+            0,
+            0,
+            19
+          ]
+        ],
+        "per_class_precision": [
+          0.0,
+          0.0,
+          0.3392857142857143
+        ],
+        "per_class_recall": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "per_class_f1": [
+          0.0,
+          0.0,
+          0.5066666666666667
+        ],
+        "per_class_support": [
+          24,
+          13,
+          19
+        ],
+        "informative": true
+      }
+    },
+    "micro_accuracy_all_slots": 0.7535714285714286,
+    "macro_balanced_accuracy_informative_slots": 0.4444444444444444,
+    "macro_f1_informative_slots": 0.3279012345679012
+  },
+  "cnn_minus_majority_micro_accuracy": 0.15714285714285714,
+  "predictions": [
+    {
+      "case_id": "BraTS20_Training_007",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_015",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_016",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_017",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 1
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 1
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_023",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_024",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 1
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 1
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_032",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_035",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 1
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_036",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_037",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_042",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 1
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 1
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_044",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_050",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 1
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_058",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 1
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_077",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_098",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_103",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_106",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 1
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_110",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_111",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_114",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 1
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_130",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 1
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_137",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_138",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_140",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 1
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_142",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_161",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_164",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_176",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 1
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_183",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_191",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_195",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_196",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 1
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_209",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_213",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_238",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 1
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_241",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_268",
+      "target": {
+        "edema": 1,
+        "enhancing": 0,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_273",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 1
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_276",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_280",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_287",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_288",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 1
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_291",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_297",
+      "target": {
+        "edema": 1,
+        "enhancing": 0,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 1
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 1
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_301",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 1
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_304",
+      "target": {
+        "edema": 1,
+        "enhancing": 0,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_314",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_315",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_317",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_318",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_321",
+      "target": {
+        "edema": 1,
+        "enhancing": 0,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_334",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_343",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_356",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 0
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    },
+    {
+      "case_id": "BraTS20_Training_360",
+      "target": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 1
+      },
+      "prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 1,
+        "extent": 2
+      },
+      "majority_prediction": {
+        "edema": 1,
+        "enhancing": 1,
+        "necrotic": 1,
+        "hemisphere": 0,
+        "extent": 2
+      }
+    }
+  ]
+}
